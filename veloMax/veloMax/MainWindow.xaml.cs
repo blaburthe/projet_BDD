@@ -22,7 +22,7 @@ namespace veloMax
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); //coucou
             //useless comment
         }
     }
