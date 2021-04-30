@@ -8,5 +8,6 @@
         Title="Commandes" Height="450" Width="800">
     <Grid>
         <Button Content="Fermer" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
+        <Button Content="pièces" HorizontalAlignment="Left" Margin="290,139,0,0" VerticalAlignment="Top" Width="75" Background="Azure"/>
     </Grid>
 </Window>

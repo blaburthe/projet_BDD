@@ -28,5 +28,9 @@ namespace veloMax
         {
             this.Close();
         }
+        public void ajouterPiece()
+        {
+            return;
+        }
     }
 }
