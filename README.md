@@ -2,14 +2,7 @@
 
 NAMING CONVENTIONS :
 
-public MyClass:
-{
-    ///
-    All the amawing things this function does
-    ///
-    public MyFunction() 
-    {
-        int variableOne = 0;
-    }
-    
-}
+class / Interface : MyClass
+function : MyFunction
+variable : myVariable
+constant : MYCONSTANT
