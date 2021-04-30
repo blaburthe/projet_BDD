@@ -24,7 +24,7 @@ namespace veloMax
             InitializeComponent();
         }
 
-        private void close_window(object sender, RoutedEventArgs e)
+        private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

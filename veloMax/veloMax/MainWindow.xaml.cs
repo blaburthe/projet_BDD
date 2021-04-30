@@ -28,11 +28,11 @@ namespace veloMax
 
         private void OpenCommandes(object sender, RoutedEventArgs e)
         {
-            Commandes window_commandes = new Commandes();
-            window_commandes.Show();
+            Commandes windowCommandes = new Commandes();
+            windowCommandes.Show();
         }
 
-        private void close_window(object sender, RoutedEventArgs e)
+        private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

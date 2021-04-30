@@ -8,7 +8,6 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Commandes" HorizontalAlignment="Left" Margin="48,83,0,0" VerticalAlignment="Top" Width="98" Height="26" Click="OpenCommandes"/>
-        <Button Content="Fermer" HorizontalAlignment="Left" Margin="700,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="close_window"/>
-
+        <Button Content="Fermer" HorizontalAlignment="Left" Margin="700,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
     </Grid>
 </Window>
