@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace veloMax
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Commandes.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Commandes : Window
     {
-        public MainWindow()
+        public Commandes()
         {
-            InitializeComponent(); //coucou
-            //useless comment
-        }
-
-        private void OpenCommandes(object sender, RoutedEventArgs e)
-        {
-            Commandes windowCommandes = new Commandes();
-            windowCommandes.Show();
+            InitializeComponent();
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
