@@ -21,7 +21,7 @@ namespace veloMax
     {
         public Commandes()
         {
-            InitializeComponent();
+            InitializeComponent(); //initialisation
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
