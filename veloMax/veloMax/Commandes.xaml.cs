@@ -29,12 +29,8 @@ namespace veloMax
         public Commandes(MySqlConnection connexion)
         {
             this.connexion = connexion;
-
             InitializeComponent();
-
-
             LoadData("select * from commande natural join adresse", "LoadDataBinding", lvCommandes);
-
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
