@@ -1,0 +1,57 @@
+﻿<Window x:Class="veloMax.Clients"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:veloMax"
+        mc:Ignorable="d"
+        Title="ClientsParticuliers" Height="450" Width="800">
+    <Window.Resources>
+        <Storyboard x:Key="sbHideAnimation" >
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"  From="1" To="1" Duration="0:0:1" />
+            <!--label shows for 3 sec-->
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:1" From="1" To="0" DecelerationRatio=".5" Duration="0:0:1" />
+            <!--Fade out the label after 3 sec-->
+        </Storyboard>
+    </Window.Resources>
+    <Canvas>
+
+        <ScrollViewer Canvas.Top="67">
+            <ListView x:Name="lvClientPart" Width="778" Height="255" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBinding}">
+                <ListView.View>
+                    <GridView x:Name="gridClient">
+                        <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Path=nom_C}"></GridViewColumn>
+                        <GridViewColumn Header="Prénom" Width="100" DisplayMemberBinding="{Binding Path=prenom_C}"></GridViewColumn>
+                        <GridViewColumn Header="Tel" Width="100" DisplayMemberBinding="{Binding Path=telephone_C}"></GridViewColumn>
+                        <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Path=courriel_C}"></GridViewColumn>
+                        <GridViewColumn Header="Ville" Width="100" DisplayMemberBinding="{Binding Path=ville}"></GridViewColumn>
+
+                        <GridViewColumn Header="ZIP" Width="60" DisplayMemberBinding="{Binding Path=codeP}"></GridViewColumn>
+                        <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroRue}"></GridViewColumn>
+                        <GridViewColumn Header="Rue" Width="100" DisplayMemberBinding="{Binding Path=rue}"></GridViewColumn>
+                        <GridViewColumn Header="Fidelio" Width="100" DisplayMemberBinding="{Binding Path=descr}"></GridViewColumn>
+                        <GridViewColumn Header="Durée" Width="100" DisplayMemberBinding="{Binding Path=duree}"></GridViewColumn>
+                        <GridViewColumn Header="Paiement" Width="100" DisplayMemberBinding="{Binding Path=date_paiement}"></GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        <RadioButton x:Name ="particuliersRadio" GroupName="radio" Content="Particuliers" Canvas.Left="537" Canvas.Top="36" Checked="SelectionChangedTypeClient" IsChecked="True"/>
+        <RadioButton x:Name ="boutiquesRadio" GroupName="radio" Content="Boutiques" Canvas.Left="537" Canvas.Top="16" Checked="SelectionChangedTypeClient"/>
+
+        <ComboBox x:Name="triSelect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="20" SelectionChanged="SelectionChangedTri" Canvas.Left="648" Canvas.Top="28">
+            <ComboBoxItem IsSelected ="True">Alphabétique</ComboBoxItem>
+            <ComboBoxItem>Ville</ComboBoxItem>
+            <ComboBoxItem>Fidélité</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="rechercheText" Height="23" Canvas.Left="282" TextWrapping="Wrap" Text="" Canvas.Top="25" Width="154"/>
+        <Button Content="Rechercher" Canvas.Left="441" Canvas.Top="28" Width="76" Click="RechercherClient"/>
+        <Label x:Name ="error" Content="Aucun client trouvé !" Canvas.Left="162" Canvas.Top="25" Width="120" Foreground="Red" Opacity="0"/>
+        <Button Content="Nouveau client" Canvas.Left="664" Canvas.Top="340" Width="104" Click="NouveauClientOpen"/>
+        <Label Content="CLIENTS" Canvas.Left="10" Height="53" Width="143" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Canvas.Top="9" />
+        <Button Content="modifier" Canvas.Left="10" Canvas.Top="340" Width="75" Click="OuvrirInfoClient"/>
+        <Button Content="actualiser" Canvas.Left="9" Canvas.Top="365" Width="76" Click="Actualiser"/>
+
+    </Canvas>
+</Window>

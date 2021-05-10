@@ -1,0 +1,34 @@
+﻿<Window x:Class="veloMax.Fournisseurs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:veloMax"
+        mc:Ignorable="d"
+        Title="Fournisseurs" Height="450" Width="800">
+    <Canvas>
+        <Label Content="FOURNISSEURS" Canvas.Left="10" Height="53" Width="248" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Canvas.Top="9" />
+
+        <ScrollViewer Canvas.Top="67">
+            <ListView x:Name="lvFournisseurs" Width="778" Height="255" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBinding}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Note" Width="30" DisplayMemberBinding="{Binding Path=libelle}"></GridViewColumn>
+                        <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Path=nom_F}"></GridViewColumn>
+                        <GridViewColumn Header="Contact" Width="100" DisplayMemberBinding="{Binding Path=contact_F}"></GridViewColumn>
+                        <GridViewColumn Header="SIRET" Width="150" DisplayMemberBinding="{Binding Path=siret}"></GridViewColumn>
+                        <GridViewColumn Header="Ville" Width="100" DisplayMemberBinding="{Binding Path=ville}"></GridViewColumn>
+                        <GridViewColumn Header="ZIP" Width="60" DisplayMemberBinding="{Binding Path=codeP}"></GridViewColumn>
+                        <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroRue}"></GridViewColumn>
+                        <GridViewColumn Header="Rue" Width="170" DisplayMemberBinding="{Binding Path=rue}"></GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        <Button Content="Nouveau fournisseur" Canvas.Left="664" Canvas.Top="340" Width="104" Click="OuvrirNouveauFournisseur"/>
+        <Button Content="modifier" Canvas.Left="10" Canvas.Top="340" Width="75" Click="OuvrirInfoFournisseur"/>
+
+
+    </Canvas>
+</Window>

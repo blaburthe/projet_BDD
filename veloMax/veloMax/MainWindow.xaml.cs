@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Data;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+
 namespace veloMax
 {
     /// <summary>
@@ -20,6 +24,11 @@ namespace veloMax
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        
+        MySqlConnection conn = new
+        MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
         public MainWindow()
         {
             InitializeComponent(); //coucou
@@ -28,13 +37,42 @@ namespace veloMax
 
         private void OpenCommandes(object sender, RoutedEventArgs e)
         {
-            Commandes windowCommandes = new Commandes();
+            Commandes windowCommandes = new Commandes(conn);
             windowCommandes.Show();
         }
-
+        
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        private void OuvrirClients(object sender, RoutedEventArgs e)
+        {
+            Clients window = new Clients(conn);
+            window.Show();
+        }
+
+        private void loadData(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("Select numeroPiece, description, stock from piece", conn);
+                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adp.Fill(ds, "LoadDataBinding");
+                lvStock.DataContext = ds;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void OuvrirFournisseurs(object sender, RoutedEventArgs e)
+        {
+            Fournisseurs window = new Fournisseurs(conn);
+            window.Show();
         }
     }
 }
