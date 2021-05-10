@@ -6,8 +6,32 @@
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Commandes" HorizontalAlignment="Left" Margin="48,83,0,0" VerticalAlignment="Top" Width="98" Height="26" Click="OpenCommandes"/>
+    <Canvas>
+        <Button Content="Commandes" HorizontalAlignment="Left" Margin="677,128,0,0" VerticalAlignment="Top" Width="98" Height="26" Click="OpenCommandes"/>
         <Button Content="Fermer" HorizontalAlignment="Left" Margin="700,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
-    </Grid>
+        <Button Content="Clients" HorizontalAlignment="Left" Margin="677,193,0,0" VerticalAlignment="Top" Width="98" Click="OuvrirClients"/>
+        <Button Content="Fournisseurs" HorizontalAlignment="Left" Margin="677,227,0,0" VerticalAlignment="Top" Width="98" Click="OuvrirFournisseurs"/>
+        
+        <TabControl TabStripPlacement="Top" Width="406" Height="292" Canvas.Left="10" Canvas.Top="42">
+            <TabItem Header="pièces" Width="80">
+                <ScrollViewer Margin="0,-1,-5,0">
+                    <ListView Name="lvStock" Width="380" Height="255" ItemsSource="{Binding Path=LoadDataBinding}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
+                                <GridViewColumn Header="description" Width="259" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                                <GridViewColumn Header="quantité" Width="60" DisplayMemberBinding="{Binding Path=stock}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="vélos"  Width="80">
+                <Label Content="blabla"/>
+            </TabItem>
+
+        </TabControl>
+        <Button Content="load" Canvas.Left="505" Canvas.Top="62" Width="75" Click="loadData"/>
+
+    </Canvas>
 </Window>

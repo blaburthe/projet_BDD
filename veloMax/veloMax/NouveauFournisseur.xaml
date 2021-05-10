@@ -1,0 +1,36 @@
+﻿<Window x:Class="veloMax.NouveauFournisseur"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:veloMax"
+        mc:Ignorable="d"
+        Title="NouveauFournisseur" Height="321.333" Width="530">
+    <Grid>
+        <TextBox x:Name="nom" HorizontalAlignment="Left" Height="23" Margin="105,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="contact" HorizontalAlignment="Left" Height="23" Margin="105,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="siret" HorizontalAlignment="Left" Height="23" Margin="105,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="numeroRue" HorizontalAlignment="Left" Height="23" Margin="355,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="rue" HorizontalAlignment="Left" Height="23" Margin="355,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ville" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="Nom" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203" Width="60"/>
+        <Label Content="Contact" HorizontalAlignment="Left" Margin="24,97,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
+        <Label Content="SIRET" HorizontalAlignment="Left" Margin="24,124,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
+        <Label Content="Note" HorizontalAlignment="Left" Margin="24,151,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
+        <Label Content="N° de rue" HorizontalAlignment="Left" Margin="274,70,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
+        <Label Content="Rue" HorizontalAlignment="Left" Margin="274,97,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
+        <Label Content="Ville" HorizontalAlignment="Left" Margin="274,124,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
+        <Label Content="Code postal" HorizontalAlignment="Left" Margin="274,151,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
+        <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="373,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Ajouter un nouveau fournisseur :" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="105,214,0,0" VerticalAlignment="Top" Width="75" Background="LightGreen" Click="AjouterFournisseur"/>
+        <ComboBox x:Name ="noteCombobox" HorizontalAlignment="Left" Height="23" Margin="105,154,0,0" Text="" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+            <ComboBoxItem>2</ComboBoxItem>
+            <ComboBoxItem>3</ComboBoxItem>
+            <ComboBoxItem>4</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>

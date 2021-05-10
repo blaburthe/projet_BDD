@@ -6,8 +6,53 @@
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
         Title="Commandes" Height="450" Width="800">
-    <Grid>
+    <Canvas>
         <Button Content="Fermer" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
-        <Button Content="pièces" HorizontalAlignment="Left" Margin="290,139,0,0" VerticalAlignment="Top" Width="75" Background="Azure"/>
-    </Grid>
+        <ScrollViewer Canvas.Top="67" Width="290" Height="327">
+            <ListView x:Name="lvCommandes" Width="270" Height="327" SelectionMode="Single" SelectionChanged="LvCommandes_SelectionChanged" ItemsSource="{Binding Path=LoadDataBinding}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="N°" Width="70" DisplayMemberBinding="{Binding Path=numeroCommande}"></GridViewColumn>
+                        <GridViewColumn Header="Passée le" Width="100" DisplayMemberBinding="{Binding Path=date_C}"></GridViewColumn>
+                        <GridViewColumn Header="Livrée le" Width="100" DisplayMemberBinding="{Binding Path=date_L}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        <ScrollViewer Canvas.Top="67" Canvas.Right="100" Width="367" Height="145" Canvas.Left="406">
+            <ListView x:Name="lvPieces" Width="348" Height="145" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBindingPieces}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="N° pièce" Width="70" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
+                        <GridViewColumn Header="Qté" Width="40" DisplayMemberBinding="{Binding Path=qte}"></GridViewColumn>
+                        <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_unit_P}"></GridViewColumn>
+                        <GridViewColumn Header="Description" Width="100" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        <ScrollViewer Canvas.Top="245" Canvas.Right="100" Width="367" Height="145" Canvas.Left="406">
+            <ListView x:Name="lvVelos" Width="348" Height="145" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBindingModeles}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="N° modèle" Width="70" DisplayMemberBinding="{Binding Path=numeroModele}"></GridViewColumn>
+
+                        <GridViewColumn Header="Qté" Width="40" DisplayMemberBinding="{Binding Path=qte}"></GridViewColumn>
+                        <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_unit_M}"></GridViewColumn>
+                        <GridViewColumn Header="Taille" Width="40" DisplayMemberBinding="{Binding Path=grandeur_M}"></GridViewColumn>
+                        <GridViewColumn Header="Nom" Width="80" DisplayMemberBinding="{Binding Path=nom_M}"></GridViewColumn>
+                        <GridViewColumn Header="Ligne produit" Width="100" DisplayMemberBinding="{Binding Path=ligne_produit}"></GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+        <Label x:Name ="adresseLabel" Content="adresse ici" Canvas.Left="555" Canvas.Top="35" Width="218"/>
+        <Label Content="Adresse de livraison :" Canvas.Left="406" Canvas.Top="35"/>
+        <Label Content="TOTAL PIÈCES :" Canvas.Left="597" Canvas.Top="212" FontWeight="Bold"/>
+        <Label Content="TOTAL VÉLOS :" Canvas.Left="597" Canvas.Top="390" FontWeight="Bold"/>
+        <Label x:Name="totalVelos" Content="00 €" Canvas.Left="694" Canvas.Top="390" FontWeight="Bold" Width="60"/>
+        <Label x:Name="totalPieces" Content="00 €" Canvas.Left="691" Canvas.Top="212" FontWeight="Bold" Width="60"/>
+
+    </Canvas>
 </Window>
