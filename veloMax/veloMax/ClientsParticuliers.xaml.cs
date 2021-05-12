@@ -24,14 +24,40 @@ namespace veloMax
     public partial class Clients : Window
     {
         MySqlConnection connexion;
+        NouvelleCommande windowCommande;
 
+        /// <summary>
+        /// Constructeur pour ouvrir la fenêtre de consultation des comptes client
+        /// </summary>
+        /// <param name="connexion"></param>
         public Clients(MySqlConnection connexion)
         {
             this.connexion = connexion;
+            this.windowCommande = null; //Pas besoin dans la configuration consultation fichier client
 
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Constructeur pour ouvrir la fenêtre de sélection client
+        /// </summary>
+        /// <param name="connexion"></param>
+        /// <param name="window"></param>
+        public Clients(MySqlConnection connexion, NouvelleCommande window)
+        {
+            this.connexion = connexion;
+            this.windowCommande = window;
+
+            InitializeComponent();
+
+            buttonSelection.IsEnabled = true;
+            buttonSelection.Visibility = 0; //0 -> Visible
+        }
+
+        /// <summary>
+        /// Très similaire à SqlBD.LoadData, avec une animation supplémentaire lorsqu'une table vide est retournée
+        /// </summary>
+        /// <param name="request"></param>
         private void LoadData(string request)
         {
             try
@@ -44,7 +70,7 @@ namespace veloMax
                 adp.Fill(ds, "LoadDataBinding");
                 if (ds.Tables[0].Rows.Count != 0)
                 {
-                    lvClientPart.DataContext = ds;
+                    lvClients.DataContext = ds;
                 }
                 else
                 {
@@ -98,7 +124,7 @@ namespace veloMax
                         break;
                 }
             }
-            LoadData(request); //reload data ordered by chosen order
+            SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients ); //reload data ordered by chosen order
         }
 
         private void RechercherClient(object sender, RoutedEventArgs e)
@@ -155,8 +181,8 @@ namespace veloMax
                 gridClient.Columns[10].Width = 100;
 
 
-
-                LoadData("Select * from individu natural join adresse natural join programme");
+                string request = "SELECT * FROM individu NATURAL JOIN adresse NATURAL JOIN programme";
+                SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
                
             }
             else
@@ -178,16 +204,16 @@ namespace veloMax
 
 
 
-
-                LoadData("Select * from boutique natural join adresse");
+                string request = "SELECT * FROM boutique NATURAL JOIN adresse";
+                SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
             }
         }
 
         private void OuvrirInfoClient(object sender, RoutedEventArgs e)
         {
-            if(lvClientPart.SelectedItem != null)
+            if(lvClients.SelectedItem != null)
             {
-                DataRowView dataTable = (DataRowView)lvClientPart.SelectedItem;
+                DataRowView dataTable = (DataRowView)lvClients.SelectedItem;
 
                 if (boutiquesRadio.IsChecked == true)
                 {
@@ -214,13 +240,47 @@ namespace veloMax
         {
             if (particuliersRadio.IsChecked == true)
             {
-                LoadData("Select * from individu natural join adresse natural join programme");
+                string request = "SELECT * FROM individu NATURAL JOIN adresse NATUEAL JOIN programme";
+                SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
             }
             else
             {
-                LoadData("Select * from boutique natural join adresse");
+                string request = "SELECT * FROM boutique NATURAL JOIN adresse";
+                SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
             }
-                
+        }
+
+        private void SelectionClick(object sender, RoutedEventArgs e)
+        {
+            if (lvClients.SelectedItem != null)
+            {
+                DataRowView dataTable = (DataRowView)lvClients.SelectedItem;
+
+                if (boutiquesRadio.IsChecked == true)
+                {
+                    windowCommande.clientSelection.Text = dataTable["nom_B"].ToString();
+                    windowCommande.labelRemise.Content = $"remise {dataTable["remise"]} % :";
+                    windowCommande.TypeCommande = "pro";
+                    windowCommande.TelClient = dataTable["telephone_B"].ToString();
+                    windowCommande.Remise = Convert.ToInt32(dataTable["remise"]);
+
+                }
+                else
+                {
+                    windowCommande.clientSelection.Text = $"{dataTable["nom_C"]} {dataTable["prenom_C"]}";
+                    windowCommande.labelRemise.Content = $"fidélio {dataTable["rabais"]} % :";
+                    windowCommande.TypeCommande = "particulier";
+                    windowCommande.TelClient = dataTable["telephone_C"].ToString();
+                    windowCommande.Remise = Convert.ToInt32(dataTable["rabais"]);
+                }
+                windowCommande.adresseClient.Text = $"{dataTable["numeroRue"]}, {dataTable["rue"]} {dataTable["codeP"]} {dataTable["ville"]}";
+                windowCommande.CalculerTotal();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un client pour la commande");
+            }
         }
     }
 }

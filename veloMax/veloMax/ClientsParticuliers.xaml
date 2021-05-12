@@ -17,7 +17,7 @@
     <Canvas>
 
         <ScrollViewer Canvas.Top="67">
-            <ListView x:Name="lvClientPart" Width="778" Height="255" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBinding}">
+            <ListView x:Name="lvClients" Width="778" Height="255" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridClient">
                         <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Path=nom_C}"></GridViewColumn>
@@ -52,6 +52,7 @@
         <Label Content="CLIENTS" Canvas.Left="10" Height="53" Width="143" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Canvas.Top="9" />
         <Button Content="modifier" Canvas.Left="10" Canvas.Top="340" Width="75" Click="OuvrirInfoClient"/>
         <Button Content="actualiser" Canvas.Left="9" Canvas.Top="365" Width="76" Click="Actualiser"/>
+        <Button x:Name="buttonSelection"  Content="Sélectionner ce client" Canvas.Left="302" Canvas.Top="350" Width="174" Height="35" FontSize="16" Background="LightSkyBlue" Click="SelectionClick" IsEnabled="False" Visibility="Hidden"/>
 
     </Canvas>
 </Window>

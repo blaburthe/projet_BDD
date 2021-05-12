@@ -25,19 +25,18 @@ namespace veloMax
     public partial class MainWindow : Window
     {
 
-        
-        MySqlConnection conn = new
-        MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+        MySqlConnection connexion;
 
         public MainWindow()
         {
-            InitializeComponent(); //coucou
-            //useless comment
+            this.connexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            InitializeComponent();
         }
 
         private void OpenCommandes(object sender, RoutedEventArgs e)
         {
-            Commandes windowCommandes = new Commandes(conn);
+            Commandes windowCommandes = new Commandes(connexion);
             windowCommandes.Show();
         }
         
@@ -47,31 +46,19 @@ namespace veloMax
         }
         private void OuvrirClients(object sender, RoutedEventArgs e)
         {
-            Clients window = new Clients(conn);
+            Clients window = new Clients(connexion);
             window.Show();
         }
 
-        private void loadData(object sender, RoutedEventArgs e)
+        private void Load(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand("Select numeroPiece, description, stock from piece", conn);
-                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                adp.Fill(ds, "LoadDataBinding");
-                lvStock.DataContext = ds;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            conn.Close();
+            string request = "Select numeroPiece, description, stock from piece";
+            SqlBD.LoadData(connexion, request, "LoadDataBinding", lvStockPiece);
         }
 
         private void OuvrirFournisseurs(object sender, RoutedEventArgs e)
         {
-            Fournisseurs window = new Fournisseurs(conn);
+            Fournisseurs window = new Fournisseurs(connexion);
             window.Show();
         }
     }
