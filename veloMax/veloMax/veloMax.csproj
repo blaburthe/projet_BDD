@@ -69,11 +69,15 @@
     <Compile Include="InfoFournisseur.xaml.cs">
       <DependentUpon>InfoFournisseur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemCommande.cs" />
     <Compile Include="NouveauClient.xaml.cs">
       <DependentUpon>NouveauClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="NouveauFournisseur.xaml.cs">
       <DependentUpon>NouveauFournisseur.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NouvelleCommande.xaml.cs">
+      <DependentUpon>NouvelleCommande.xaml</DependentUpon>
     </Compile>
     <Compile Include="SqlBD.cs" />
     <Page Include="ClientsParticuliers.xaml">
@@ -117,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NouveauFournisseur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NouvelleCommande.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

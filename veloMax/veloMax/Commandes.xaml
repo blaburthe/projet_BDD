@@ -25,7 +25,7 @@
                     <GridView>
                         <GridViewColumn Header="N° pièce" Width="70" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
                         <GridViewColumn Header="Qté" Width="40" DisplayMemberBinding="{Binding Path=qte}"></GridViewColumn>
-                        <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_unit_P}"></GridViewColumn>
+                        <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_P}"></GridViewColumn>
                         <GridViewColumn Header="Description" Width="100" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -38,7 +38,7 @@
                         <GridViewColumn Header="N° modèle" Width="70" DisplayMemberBinding="{Binding Path=numeroModele}"></GridViewColumn>
 
                         <GridViewColumn Header="Qté" Width="40" DisplayMemberBinding="{Binding Path=qte}"></GridViewColumn>
-                        <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_unit_M}"></GridViewColumn>
+                        <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_M}"></GridViewColumn>
                         <GridViewColumn Header="Taille" Width="40" DisplayMemberBinding="{Binding Path=grandeur_M}"></GridViewColumn>
                         <GridViewColumn Header="Nom" Width="80" DisplayMemberBinding="{Binding Path=nom_M}"></GridViewColumn>
                         <GridViewColumn Header="Ligne produit" Width="100" DisplayMemberBinding="{Binding Path=ligne_produit}"></GridViewColumn>
@@ -53,6 +53,9 @@
         <Label Content="TOTAL VÉLOS :" Canvas.Left="597" Canvas.Top="390" FontWeight="Bold"/>
         <Label x:Name="totalVelos" Content="00 €" Canvas.Left="694" Canvas.Top="390" FontWeight="Bold" Width="60"/>
         <Label x:Name="totalPieces" Content="00 €" Canvas.Left="691" Canvas.Top="212" FontWeight="Bold" Width="60"/>
+        <Button Content="Livrer" Canvas.Left="24" Canvas.Top="40" Width="78" Background="#219ebc" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="LivrerCommande"/>
+        <Button Content="Supprimer" Canvas.Left="140" Canvas.Top="40" Width="84" Background="#ffb703" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="SupprimerCommande" Height="18"/>
+        <Button Content="Nouvelle commande" Canvas.Left="282" Canvas.Top="20" Width="75" Click="OuvrirNouvelleCommande"/>
 
     </Canvas>
 </Window>
