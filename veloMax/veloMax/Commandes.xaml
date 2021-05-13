@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
         Title="Commandes" Height="450" Width="800">
+
     <Canvas>
         <Button Content="Fermer" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
         <ScrollViewer Canvas.Top="67" Width="290" Height="327">
@@ -55,7 +56,7 @@
         <Label x:Name="totalPieces" Content="00 €" Canvas.Left="691" Canvas.Top="212" FontWeight="Bold" Width="60"/>
         <Button Content="Livrer" Canvas.Left="24" Canvas.Top="40" Width="78" Background="#219ebc" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="LivrerCommande"/>
         <Button Content="Supprimer" Canvas.Left="140" Canvas.Top="40" Width="84" Background="#ffb703" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="SupprimerCommande" Height="18"/>
-        <Button Content="Nouvelle commande" Canvas.Left="282" Canvas.Top="20" Width="75" Click="OuvrirNouvelleCommande"/>
+        <Button Content="Nouvelle commande" Canvas.Left="287" Canvas.Top="10" Width="119" Click="OuvrirNouvelleCommande" Height="27"/>
 
     </Canvas>
 </Window>
