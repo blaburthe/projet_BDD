@@ -13,7 +13,7 @@
             <TabItem Header="pièces" Width="80">
                 <ScrollViewer Margin="0,-1,-5,0">
                     <ListView Name="lvCataloguePieces" Width="392" Height="169" BorderThickness="0" ItemsSource="{Binding Path=LoadDataPieces}">
-                        <ListView.Resources>
+                        <!--<ListView.Resources>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding stock}" Value="0">
@@ -21,7 +21,7 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </ListView.Resources>
+                        </ListView.Resources>-->
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="N°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>

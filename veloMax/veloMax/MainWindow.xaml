@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Canvas>
+        
         <Button Content="Commandes" HorizontalAlignment="Left" Margin="677,128,0,0" VerticalAlignment="Top" Width="98" Height="26" Click="OpenCommandes"/>
         <Button Content="Fermer" HorizontalAlignment="Left" Margin="700,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
         <Button Content="Clients" HorizontalAlignment="Left" Margin="677,193,0,0" VerticalAlignment="Top" Width="98" Click="OuvrirClients"/>
@@ -15,7 +16,7 @@
         <TabControl TabStripPlacement="Top" Width="406" Height="292" Canvas.Left="10" Canvas.Top="42">
             <TabItem Header="pièces" Width="80">
                 <ScrollViewer Margin="0,-1,-5,0">
-                    <ListView Name="lvStockPiece" Width="386" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBinding}">
+                    <ListView Name="lvStockPiece" Width="386" Height="262" ItemsSource="{Binding Path=LoadDataBinding}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>

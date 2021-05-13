@@ -29,7 +29,7 @@
         <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="373,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Ajouter un nouveau client :" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="105,214,0,0" VerticalAlignment="Top" Width="75" Background="LightGreen" Click="ajouterClient"/>
-        <ComboBox x:Name ="fidelioCombobox" HorizontalAlignment="Left" Margin="355,233,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name ="fidelioCombobox" HorizontalAlignment="Left" Margin="355,233,0,0" VerticalAlignment="Top" Width="120" Background="AliceBlue">
             <ComboBoxItem IsSelected="True">Aucun</ComboBoxItem>
             <ComboBoxItem>classique</ComboBoxItem>
             <ComboBoxItem>or</ComboBoxItem>
