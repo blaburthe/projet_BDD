@@ -5,20 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Style="{DynamicResource GrayWindow}">
     <Canvas>
-        <Label Content="STOCK" Height="53" Width="349" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Margin="10,6,437,364.667" />
+        <Label Content="STOCK" Style="{DynamicResource Titre}" Height="53" Width="349" Margin="10,6,437,364.667" />
 
 
         <Button Content="Commandes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="41" FontSize="17" Click="OpenCommandes" Canvas.Left="465" Canvas.Top="88"/>
-        <Button Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Background="OrangeRed" Click="CloseWindow" Height="22" Canvas.Left="724" Canvas.Top="10"/>
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="724" Canvas.Top="10"/>
         <Button Content="Clients" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirClients" Canvas.Left="628" Canvas.Top="88" Height="41"/>
         <Button Content="Fournisseurs" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirFournisseurs" Canvas.Left="465" Canvas.Top="154" Height="41"/>
 
         <TabControl TabStripPlacement="Top" Width="423" Height="292" Canvas.Left="10" Canvas.Top="59">
             <TabItem Header="pièces" Width="80">
-                <ScrollViewer Margin="0,-1,-5,0">
-                    <ListView Name="lvStockPiece" Width="402" Height="262" ItemsSource="{Binding Path=LoadDataBindingPiece}">
+                <ScrollViewer Margin="0,-1,-5,-5">
+                    <ListView Name="lvStockPiece" Width="426" Height="268" ItemsSource="{Binding Path=LoadDataBindingPiece}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
@@ -31,7 +32,7 @@
             </TabItem>
             <TabItem Header="vélos"  Width="80">
                 <ScrollViewer Margin="0,-1,-5,0">
-                    <ListView Name="lvStockVelo" Width="402" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBindingModele}">
+                    <ListView Name="lvStockVelo" Width="423" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBindingModele}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="N°" Width="60" DisplayMemberBinding="{Binding Path=numeroModele}"></GridViewColumn>

@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="InfoFournisseur" Height="309.333" Width="532.667">
+        Title="InfoFournisseur" Height="309.333" Width="532.667"
+        Style="{DynamicResource GrayWindow}">
     <Grid>
-        <Label Content="INFORMATIONS FOURNISSEUR" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
+        <Label Content="INFORMATIONS FOURNISSEUR" Style="{DynamicResource Titre}" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="20" />
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Margin="468,10,0,0"/>
+
 
         <TextBox x:Name="nom" HorizontalAlignment="Left" Height="24" Margin="110,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="contact" HorizontalAlignment="Left" Height="22" Margin="110,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -27,7 +30,7 @@
         <Label Content="Code postal" HorizontalAlignment="Left" Margin="274,151,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
 
         <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="382,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Button Content="Sauvergarder les modifications" HorizontalAlignment="Left" Margin="295,231,0,0" VerticalAlignment="Top" Width="180" Background="LightYellow" Click="SauvegarderModif"/>
+        <Button Content="Sauvergarder les modifications" Style="{DynamicResource OrangeButtonStyle}" HorizontalAlignment="Left" Margin="286,203,0,0" VerticalAlignment="Top" Width="189" FontWeight="Bold" Click="SauvegarderModif" Height="24"/>
         <ComboBox x:Name ="noteCombobox" HorizontalAlignment="Left" Height="23" Margin="110,154,0,0" Text="" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>1</ComboBoxItem>
             <ComboBoxItem>2</ComboBoxItem>

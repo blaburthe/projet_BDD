@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="InfoClient" Height="450" Width="800">
+        Title="InfoClient" Height="450" Width="800"
+        Style="{DynamicResource GrayWindow}">
     <Grid>
-        <Label Content="INFORMATIONS CLIENT" Height="53" Width="349" FontWeight="Bold" FontSize="20" Foreground="DarkSlateBlue" Margin="10,6,437,364.667" />
+        <Label Content="INFORMATIONS CLIENT" Style="{DynamicResource Titre}" Height="53" Width="349" Margin="10,6,437,364.667" />
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Margin="735,10,0,0"/>
+
 
         <TextBox x:Name="nom" HorizontalAlignment="Left" Height="24" Margin="110,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="prenom" HorizontalAlignment="Left" Height="22" Margin="110,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -19,7 +22,6 @@
         <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="remise" HorizontalAlignment="Left" Height="23" Margin="597,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="datePaiement" HorizontalAlignment="Left" Height="23" Margin="597,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="fidelio" HorizontalAlignment="Left" Height="23" Margin="606,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="duree" HorizontalAlignment="Left" Height="23" Margin="597,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <ComboBox x:Name ="fidelioCombobox" HorizontalAlignment="Left" Margin="597,73,0,0" VerticalAlignment="Top" Width="120" Height="23">
             <ComboBoxItem>Auncun</ComboBoxItem>
@@ -43,9 +45,9 @@
         <Label Content="Durée" HorizontalAlignment="Left" Margin="516,151,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
         <Label Content="FIDELIO/RABAIS" HorizontalAlignment="Left" Margin="606,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="382,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        
-        
-        <Button Content="Sauvergarder les modifications" HorizontalAlignment="Left" Margin="288,228,0,0" VerticalAlignment="Top" Width="225" FontSize="15" Background="LightYellow" Foreground="DimGray" Click="SauvegarderModif" Height="28">
+
+
+        <Button Content="Sauvergarder les modifications" Style="{DynamicResource OrangeButtonStyle}" HorizontalAlignment="Left" Margin="482,209,0,0" VerticalAlignment="Top" Width="235" FontSize="15" FontWeight ="Bold" Click="SauvegarderModif" Height="33">
 
         </Button>
 

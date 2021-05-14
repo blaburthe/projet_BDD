@@ -52,6 +52,15 @@ namespace veloMax
 
             buttonSelection.IsEnabled = true;
             buttonSelection.Visibility = 0; //0 -> Visible
+
+            buttonModifier.Visibility = Visibility.Hidden;
+            buttonSupprimer.Visibility = Visibility.Hidden;
+
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         /// <summary>
@@ -267,11 +276,17 @@ namespace veloMax
                 }
                 else
                 {
+                    int rabais = 0;
+                    if (dataTable["rabais"].ToString() != "")
+                    {
+                        rabais = Convert.ToInt32(dataTable["rabais"]);
+                    }
                     windowCommande.clientSelection.Text = $"{dataTable["nom_C"]} {dataTable["prenom_C"]}";
-                    windowCommande.labelRemise.Content = $"fidélio {dataTable["rabais"]} % :";
+                    windowCommande.labelRemise.Content = $"fidélio {rabais} % :";
                     windowCommande.TypeCommande = "particulier";
                     windowCommande.TelClient = dataTable["telephone_C"].ToString();
-                    windowCommande.Remise = Convert.ToInt32(dataTable["rabais"]);
+                    windowCommande.Remise = rabais;
+
                 }
                 windowCommande.adresseClient.Text = $"{dataTable["numeroRue"]}, {dataTable["rue"]} {dataTable["codeP"]} {dataTable["ville"]}";
                 windowCommande.CalculerTotal();

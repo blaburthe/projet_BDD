@@ -30,6 +30,12 @@ namespace veloMax
             InitializeComponent();
             LoadData("SELECT * FROM fournisseur NATURAL JOIN adresse");
         }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void LoadData(string request)
         {
             try

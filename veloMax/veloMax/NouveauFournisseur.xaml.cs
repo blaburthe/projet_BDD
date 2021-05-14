@@ -31,6 +31,11 @@ namespace veloMax
             this.connexion = connexion;
         }
 
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void AjouterFournisseur(object sender, RoutedEventArgs e)
         {
             if (nom.Text == "" || contact.Text == "" || siret.Text == "" || rue.Text == "" || numeroRue.Text == "" || ville.Text == "" || codePostal.Text == "")
