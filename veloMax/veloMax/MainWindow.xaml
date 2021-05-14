@@ -7,20 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Canvas>
-        
-        <Button Content="Commandes" HorizontalAlignment="Left" Margin="677,128,0,0" VerticalAlignment="Top" Width="98" Height="26" Click="OpenCommandes"/>
-        <Button Content="Fermer" HorizontalAlignment="Left" Margin="700,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
-        <Button Content="Clients" HorizontalAlignment="Left" Margin="677,193,0,0" VerticalAlignment="Top" Width="98" Click="OuvrirClients"/>
-        <Button Content="Fournisseurs" HorizontalAlignment="Left" Margin="677,227,0,0" VerticalAlignment="Top" Width="98" Click="OuvrirFournisseurs"/>
+        <Label Content="STOCK" Height="53" Width="349" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Margin="10,6,437,364.667" />
 
-        <TabControl TabStripPlacement="Top" Width="406" Height="292" Canvas.Left="10" Canvas.Top="42">
+
+        <Button Content="Commandes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="41" FontSize="17" Click="OpenCommandes" Canvas.Left="465" Canvas.Top="88"/>
+        <Button Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Background="OrangeRed" Click="CloseWindow" Height="22" Canvas.Left="724" Canvas.Top="10"/>
+        <Button Content="Clients" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirClients" Canvas.Left="628" Canvas.Top="88" Height="41"/>
+        <Button Content="Fournisseurs" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirFournisseurs" Canvas.Left="465" Canvas.Top="154" Height="41"/>
+
+        <TabControl TabStripPlacement="Top" Width="423" Height="292" Canvas.Left="10" Canvas.Top="59">
             <TabItem Header="pièces" Width="80">
                 <ScrollViewer Margin="0,-1,-5,0">
-                    <ListView Name="lvStockPiece" Width="386" Height="262" ItemsSource="{Binding Path=LoadDataBinding}">
+                    <ListView Name="lvStockPiece" Width="402" Height="262" ItemsSource="{Binding Path=LoadDataBindingPiece}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
-                                <GridViewColumn Header="description" Width="265" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                                <GridViewColumn Header="description" Width="275" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
                                 <GridViewColumn Header="quantité" Width="60" DisplayMemberBinding="{Binding Path=stock}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
@@ -29,11 +31,13 @@
             </TabItem>
             <TabItem Header="vélos"  Width="80">
                 <ScrollViewer Margin="0,-1,-5,0">
-                    <ListView Name="lvStockVelo" Width="386" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBinding}">
+                    <ListView Name="lvStockVelo" Width="402" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBindingModele}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
-                                <GridViewColumn Header="description" Width="265" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                                <GridViewColumn Header="N°" Width="60" DisplayMemberBinding="{Binding Path=numeroModele}"></GridViewColumn>
+                                <GridViewColumn Header="Nom" Width="130" DisplayMemberBinding="{Binding Path=nom_M}"></GridViewColumn>
+                                <GridViewColumn Header="Taille" Width="80" DisplayMemberBinding="{Binding Path=grandeur_M}"></GridViewColumn>
+                                <GridViewColumn Header="Catégorie" Width="80" DisplayMemberBinding="{Binding Path=ligne_produit}"></GridViewColumn>
                                 <GridViewColumn Header="quantité" Width="60" DisplayMemberBinding="{Binding Path=stock}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
@@ -42,7 +46,7 @@
             </TabItem>
 
         </TabControl>
-        <Button Content="load" Canvas.Left="505" Canvas.Top="62" Width="75" Click="Load"/>
+        <Button Content="rafraîchir" Canvas.Left="354" Canvas.Top="356" Width="79" Click="Load" Height="20"/>
 
     </Canvas>
 </Window>

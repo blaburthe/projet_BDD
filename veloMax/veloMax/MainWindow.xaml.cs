@@ -32,6 +32,8 @@ namespace veloMax
         {
             this.connexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             InitializeComponent();
+
+            RafraichirStock();
         }
 
         private void OpenCommandes(object sender, RoutedEventArgs e)
@@ -49,11 +51,18 @@ namespace veloMax
             Clients window = new Clients(connexion);
             window.Show();
         }
+        public void RafraichirStock()
+        {
+            string request1 = "SELECT numeroPiece, description, stock FROM piece";
+            SqlBD.LoadData(connexion, request1, "LoadDataBindingPiece", lvStockPiece);
+
+            string request2 = "SELECT numeroModele, nom_M, grandeur_M, ligne_produit, stock FROM modele";
+            SqlBD.LoadData(connexion, request2, "LoadDataBindingModele", lvStockVelo);
+        }
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            string request = "Select numeroPiece, description, stock from piece";
-            SqlBD.LoadData(connexion, request, "LoadDataBinding", lvStockPiece);
+            RafraichirStock();
         }
 
         private void OuvrirFournisseurs(object sender, RoutedEventArgs e)

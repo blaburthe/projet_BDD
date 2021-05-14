@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="InfoFournisseur" Height="309.333" Width="532.667">
     <Grid>
-        <Label Content="Modifier un fournisseur existant :" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
+        <Label Content="INFORMATIONS FOURNISSEUR" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
 
         <TextBox x:Name="nom" HorizontalAlignment="Left" Height="24" Margin="110,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="contact" HorizontalAlignment="Left" Height="22" Margin="110,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
