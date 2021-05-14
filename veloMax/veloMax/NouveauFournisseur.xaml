@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="NouveauFournisseur" Height="321.333" Width="530">
+        Title="NouveauFournisseur" Height="321.333" Width="530"
+        Style="{DynamicResource GrayWindow}">
     <Grid>
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" Width="51" Click="CloseWindow" Margin="465,10,0,263"/>
+
+
         <TextBox x:Name="nom" HorizontalAlignment="Left" Height="23" Margin="105,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="contact" HorizontalAlignment="Left" Height="23" Margin="105,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="siret" HorizontalAlignment="Left" Height="23" Margin="105,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -24,8 +28,8 @@
         <Label Content="Ville" HorizontalAlignment="Left" Margin="274,124,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>
         <Label Content="Code postal" HorizontalAlignment="Left" Margin="274,151,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
         <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="373,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Ajouter un nouveau fournisseur :" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
-        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="105,214,0,0" VerticalAlignment="Top" Width="75" Background="LightGreen" Click="AjouterFournisseur"/>
+        <Label Content="NOUVEAU FOURNISSEUR" Style="{DynamicResource Titre}" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Button Content="Ajouter" Style="{DynamicResource GreenButtonStyle}" HorizontalAlignment="Left" Margin="400,202,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" FontSize="15" Click="AjouterFournisseur" Height="24"/>
         <ComboBox x:Name ="noteCombobox" HorizontalAlignment="Left" Height="23" Margin="105,154,0,0" Text="" VerticalAlignment="Top" Width="120">
             <ComboBoxItem IsSelected="True">1</ComboBoxItem>
             <ComboBoxItem>2</ComboBoxItem>

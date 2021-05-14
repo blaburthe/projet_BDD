@@ -29,6 +29,12 @@ namespace veloMax
             this.connexion = connexion;
             InitializeComponent();
         }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void SelectionChangedTypeClient(object sender, RoutedEventArgs e)
         {
             if(particulierRadio.IsChecked==true)

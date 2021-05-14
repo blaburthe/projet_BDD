@@ -66,6 +66,11 @@ namespace veloMax
         public string TelClient { get { return telClient; } set { telClient = value; } }
         public int Remise { get { return remise; } set { remise = value; } }
 
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         public int CalculerTotal()
         {
             int total = 0;

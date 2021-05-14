@@ -87,6 +87,10 @@ namespace veloMax
 
         }
 
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
         private void SauvegarderModif(object sender, RoutedEventArgs e)
         {

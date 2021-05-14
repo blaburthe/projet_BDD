@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="NouveauClient" Height="299" Width="531.5">
+        Title="NouveauClient" Height="299" Width="531.5"
+        Style="{DynamicResource GrayWindow}">
     <Grid>
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Margin="466,10,0,0"/>
+
+
         <TextBox x:Name="nom" HorizontalAlignment="Left" Height="23" Margin="105,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="prenom" HorizontalAlignment="Left" Height="23" Margin="105,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tel" HorizontalAlignment="Left" Height="23" Margin="105,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -27,8 +31,8 @@
         <Label Content="Code postal" HorizontalAlignment="Left" Margin="274,151,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
         <Label Content="Remise" HorizontalAlignment="Left" Margin="274,203,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
         <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="373,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Ajouter un nouveau client :" HorizontalAlignment="Left" Margin="24,12,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"  Foreground="DarkSlateBlue"/>
-        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="105,214,0,0" VerticalAlignment="Top" Width="75" Background="LightGreen" Click="ajouterClient"/>
+        <Label Content="NOUVEAU CLIENT" Style="{DynamicResource Titre}" HorizontalAlignment="Left" Margin="10,7,0,0" FontSize="25" VerticalAlignment="Top"/>
+        <Button Style="{DynamicResource GreenButtonStyle}" Content="Ajouter" HorizontalAlignment="Left" Margin="105,224,0,0" VerticalAlignment="Top" Width="78" FontSize="15" FontWeight="SemiBold" Click="ajouterClient" Height="25"/>
         <ComboBox x:Name ="fidelioCombobox" HorizontalAlignment="Left" Margin="355,233,0,0" VerticalAlignment="Top" Width="120" Background="AliceBlue">
             <ComboBoxItem IsSelected="True">Aucun</ComboBoxItem>
             <ComboBoxItem>Classique</ComboBoxItem>
@@ -37,8 +41,8 @@
             <ComboBoxItem>Max</ComboBoxItem>
         </ComboBox>
         <Label Content="Fidélio" HorizontalAlignment="Left" Margin="276,229,0,0" VerticalAlignment="Top" Width="61"/>
-        <RadioButton x:Name ="particulierRadio" GroupName="radio" Content="Particulier" HorizontalAlignment="Left" Margin="261,12,0,0" VerticalAlignment="Top" Checked="SelectionChangedTypeClient" IsChecked="True"/>
-        <RadioButton x:Name ="boutiqueRadio" GroupName="radio" Content="Boutique" HorizontalAlignment="Left" Margin="261,27,0,0" VerticalAlignment="Top" Checked="SelectionChangedTypeClient"/>
+        <RadioButton x:Name ="particulierRadio" GroupName="radio" Content="Particulier" HorizontalAlignment="Left" Margin="285,12,0,0" VerticalAlignment="Top" Checked="SelectionChangedTypeClient" IsChecked="True"/>
+        <RadioButton x:Name ="boutiqueRadio" GroupName="radio" Content="Boutique" HorizontalAlignment="Left" Margin="285,27,0,0" VerticalAlignment="Top" Checked="SelectionChangedTypeClient"/>
 
 
     </Grid>

@@ -6,39 +6,62 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        <Style x:Key ="GrayWindow" TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="#E9E9E9"/>
+        </Style>
+
         <Style TargetType="{x:Type TextBox}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="CornerRadius" Value="7" />
                 </Style>
             </Style.Resources>
-            <Setter Property="Background" Value="#FFF4F4F5" />
+            <Setter Property="Background" Value="White" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="VerticalContentAlignment" Value="center" />
             <Setter Property="Foreground" Value="#3F3F3F"/>
         </Style>
-        <Style TargetType="{x:Type TextBlock}">
+        
+        <Style x:Key="DisplayInfoTextBlock" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#4F4F4F"/>
+
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="CornerRadius" Value="7" />
                 </Style>
             </Style.Resources>
         </Style>
+        
         <Style TargetType="{x:Type Label}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="CornerRadius" Value="7" />
                 </Style>
             </Style.Resources>
         </Style>
+
+        <Style x:Key="DisplayInfoLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#4F4F4F"/>
+        </Style>
+
+        <Style x:Key="Titre" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="#2463A8"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
         <Style TargetType="{x:Type Button}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="CornerRadius" Value="7" />
                 </Style>
             </Style.Resources>
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Background" Value="#D0D0D0"/>  
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -50,22 +73,161 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DDE7F7" />
+                    <!--<Setter Property="Background" Value="#DDE7F7" />-->
+                    <Setter Property="Background" Value="#EAEAEA" />
+                    <Setter Property="Foreground" Value="#7E7E7E" />
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="{x:Type TabControl}">
-            <Setter Property="BorderBrush" Value="LightGray"/>
-        </Style>
-        <Style TargetType="{x:Type ListView}">
+        
+        <Style x:Key="GreenButtonStyle" TargetType="{x:Type Button}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="CornerRadius" Value="7" />
                 </Style>
             </Style.Resources>
-            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#74D695"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D6F2DF" />
+                    <Setter Property="Foreground" Value="#71D191" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+        <Style x:Key="RedButtonStyle" TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="7" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#ED7A7A"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FAD9D9" />
+                    <Setter Property="Foreground" Value="#ED7A7A" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="OrangeButtonStyle" TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="7" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#F8BB6C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FDECD5" />
+                    <Setter Property="Foreground" Value="#F8BB6C" />
+                </Trigger>
+            </Style.Triggers>
+        </Style> 
+
+        <Style x:Key="BlueButtonStyle" TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="7" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#6ACEDB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#DFF5F7" />
+                    <Setter Property="Foreground" Value="#6ACEDB" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="Background" Value="#F7F7F7"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderThickness="0" CornerRadius="7" BorderBrush="#D0CEBF" Grid.Row="1">
+                                <Border BorderThickness="0" CornerRadius="7">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                                        <ContentPresenter ContentSource="SelectedContent"/>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <TabPanel Grid.Row="0" IsItemsHost="true"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TabItem}">
+
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3,3,0,0" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#FFF4F4F5"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#DDE7F7"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+
         <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Foreground" Value="#484848"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <!--On overide le template par défaut pour enlever le gradient de couleur moche-->
@@ -91,18 +253,66 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <SolidColorBrush x:Key="ListBorder" Color="#828790"/>
+        <Style TargetType="{x:Type ListView}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ListBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#FF042271"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListView}">
+                        <Border Name="Bd"
+                        CornerRadius="7"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0"
+                        SnapsToDevicePixels="true">
+                            <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}"
+                                  Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsGrouping"
+                             Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll"
+                                Value="false"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                             Value="false">
+                                <Setter TargetName="Bd"
+                                Property="Background"
+                                Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="{x:Type GridView}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="CornerRadius" Value="7" />
                 </Style>
             </Style.Resources>
         </Style>
+
         <Style TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Background" Value="#FFF4F4F5" />
-            <Setter Property="Foreground" Value="#3F3F3F"/>
+            <!--<Setter Property="Background" Value="#EBEBEB" /> 868686-->
+            <Setter Property="Background" Value="#DADADA" />
+            <Setter Property="Foreground" Value="#545454"/>
+            <!--<Setter Property="Foreground" Value="#626262"/>-->
             <Setter Property="Template">
-                <!--On overide le template par défaut pour enlever le gradient de couleur moche-->
+
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
                         <Border Padding="{TemplateBinding Padding}"
@@ -115,33 +325,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DDE7F7" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type ScrollViewer}">
-            <Style.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3" />
-                </Style>
-            </Style.Resources>
-        </Style>
-        <Style TargetType="{x:Type TabItem}">
-
-            <Style.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="3,3,0,0" />
-                </Style>
-            </Style.Resources>
-            <Setter Property="Background" Value="#FFF4F4F5"/>
-            <Setter Property="BorderBrush" Value="LightGray"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DDE7F7"/>
-                </Trigger>
-            </Style.Triggers>
 
         </Style>
 
@@ -185,16 +368,14 @@
             </Setter>
         </Style>
 
-
-
         <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Grid>
-                            <Border CornerRadius="3,0,0,3"
+                            <Border CornerRadius="7,0,0,7"
                             BorderThickness="0"
-                            Background="#FFF4F4F5">
+                            Background="White">
                                 <ScrollViewer x:Name="PART_ContentHost"/>
                             </Border>
                         </Grid>
@@ -202,6 +383,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ToggleButton}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -209,7 +391,7 @@
                         <Border 
                         Background="LightGray" 
                         x:Name="border" 
-                        CornerRadius="0,3,3,0" 
+                        CornerRadius="0,7,7,0" 
                         BorderThickness="0">
                             <ContentPresenter />
                         </Border>
@@ -220,7 +402,7 @@
 
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Background" Value="#FFF4F4F5" />
+            <Setter Property="Background" Value="White" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -265,7 +447,7 @@
                                     <Border 
                                     x:Name="DropDownBorder"
                                     BorderThickness="0"
-                                    CornerRadius="3"
+                                    CornerRadius="7"
                                     Background="#FFF4F4F5"/>
                                     <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
@@ -280,8 +462,13 @@
 
         <Style TargetType="{x:Type RadioButton}">
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Background" Value="#FFF4F4F5" />
+            <Setter Property="Background" Value="White" />
         </Style>
         
+        
+
+
+
+
     </Application.Resources>
 </Application>

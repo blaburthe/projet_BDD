@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="Commandes" Height="450" Width="800">
+        Title="Commandes" Height="450" Width="800"
+        Style="{DynamicResource GrayWindow}">
 
     <Canvas>
-        <Label Content="COMMANDES" Height="53" Width="349" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Margin="10,6,437,364.667" />
+        <Label Content="COMMANDES"  Style="{DynamicResource Titre}" Height="53" Width="349" Margin="10,6,437,364.667" />
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="735" Canvas.Top="10"/>
 
         <ScrollViewer Canvas.Top="104" Width="372" Height="290">
             <ListView x:Name="lvCommandes" Width="351" Height="280" SelectionMode="Single" SelectionChanged="LvCommandes_SelectionChanged" ItemsSource="{Binding Path=LoadDataBinding}">
@@ -28,7 +30,7 @@
                         <GridViewColumn Header="N° pièce" Width="70" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
                         <GridViewColumn Header="Qté" Width="40" DisplayMemberBinding="{Binding Path=qte}"></GridViewColumn>
                         <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_P}"></GridViewColumn>
-                        <GridViewColumn Header="Description" Width="173" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                        <GridViewColumn Header="Description" Width="177" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -49,14 +51,15 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        <Label x:Name ="adresseLabel" Content="" Canvas.Left="555" Canvas.Top="35" Width="218"/>
-        <Label Content="Adresse de livraison :" Canvas.Left="406" Canvas.Top="35"/>
+        <Label x:Name ="adresseLabel" Style="{DynamicResource DisplayInfoLabel}" Content="" Canvas.Left="555" Canvas.Top="35" Width="218"/>
+        <Label Content="Adresse de livraison :" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="406" Canvas.Top="35"/>
         <Label Content="TOTAL PIÈCES :" Canvas.Left="597" Canvas.Top="212" FontWeight="Bold"/>
         <Label Content="TOTAL VÉLOS :" Canvas.Left="597" Canvas.Top="390" FontWeight="Bold"/>
         <Label x:Name="totalVelos" Content="00 €" Canvas.Left="694" Canvas.Top="390" FontWeight="Bold" Width="60"/>
         <Label x:Name="totalPieces" Content="00 €" Canvas.Left="691" Canvas.Top="212" FontWeight="Bold" Width="60"/>
-        <Button Content="Livrer" Canvas.Left="32" Canvas.Top="69" Width="80" Background="#74D695" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="LivrerCommande" Height="18"/>
-        <Button Content="Supprimer" Canvas.Left="132" Canvas.Top="69" Width="84" Background="#ED7A7A" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="SupprimerCommande" Height="18"/>
+        <Button Content="Livrer" Style="{DynamicResource GreenButtonStyle}" Canvas.Left="32" Canvas.Top="69" Width="80" FontWeight="SemiBold" Click="LivrerCommande" Height="18"/>
+
+        <Button Content="Supprimer" Style="{DynamicResource RedButtonStyle}" Canvas.Left="132" Canvas.Top="69" Width="84" FontWeight="SemiBold" Click="SupprimerCommande" Height="18"/>
         <Button Content="Nouvelle commande" Canvas.Left="240" Canvas.Top="60" Width="119" Click="OuvrirNouvelleCommande" Height="27"/>
 
     </Canvas>

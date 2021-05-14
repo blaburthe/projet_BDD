@@ -42,6 +42,10 @@ namespace veloMax
             this.codePostal.Text = codePostal;
             this.ville.Text = ville;
         }
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
         private void SauvegarderModif(object sender, RoutedEventArgs e)
         {

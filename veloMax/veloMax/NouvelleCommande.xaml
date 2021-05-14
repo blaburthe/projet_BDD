@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="NouvelleCommande" Height="450" Width="800">
+        Title="NouvelleCommande" Height="450" Width="800"
+        Style="{DynamicResource GrayWindow}">
     <Canvas>
-        <Label Content="NOUVELLE COMMANDE" Canvas.Left="10" Height="53" Width="349" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Canvas.Top="9" />
+        <Label Content="NOUVELLE COMMANDE" Style="{DynamicResource Titre}" Canvas.Left="10" Height="53" Width="349" Canvas.Top="9" />
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="735" Canvas.Top="10"/>
+
 
         <TabControl x:Name="tab" TabStripPlacement="Top" Width="416" Height="196" Canvas.Left="11" Canvas.Top="63">
             <TabItem Header="pièces" Width="80">
@@ -66,16 +69,16 @@
             </ListView.View>
         </ListView>
         <Button Content="Séléctionner un client" Canvas.Left="37" Canvas.Top="280" Width="152" Click="OuvrirSelectionnnerClient" Height="25"/>
-        <TextBlock x:Name="clientSelection" Canvas.Left="129" TextWrapping="Wrap" Text="" Canvas.Top="320" Height="18" Width="154"/>
-        <TextBlock x:Name="adresseClient" Canvas.Left="129" TextWrapping="Wrap" Text="" Canvas.Top="343" Height="18" Width="154"/>
-        <Label Content="client :" Canvas.Left="37" Canvas.Top="315" Width="70"/>
-        <Label Content="adresse :" Canvas.Left="37" Canvas.Top="338" Width="70"/>
+        <TextBlock x:Name="clientSelection" Style="{DynamicResource DisplayInfoTextBlock}" Canvas.Left="129" TextWrapping="Wrap" Text="" Canvas.Top="320" Height="18" Width="154"/>
+        <TextBlock x:Name="adresseClient" Style="{DynamicResource DisplayInfoTextBlock}" Canvas.Left="129" TextWrapping="Wrap" Text="" Canvas.Top="343" Height="18" Width="154"/>
+        <Label Content="client :" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="37" Canvas.Top="315" Width="70"/>
+        <Label Content="adresse :" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="37" Canvas.Top="338" Width="70"/>
         <TextBlock x:Name ="totalSansRemise" Canvas.Left="653" TextWrapping="Wrap" Text="" FontWeight="Bold" FontSize="16" Canvas.Top="284" Width="67"/>
         <TextBlock x:Name ="reduction" Canvas.Left="644" TextWrapping="Wrap" Text="" FontSize="14" Canvas.Top="307" Width="76"/>
         <Label x:Name ="labelRemise" Content="" Canvas.Left="520" Canvas.Top="304" Width="88"/>
         <Line  X1="720" Y1="340" X2="500" Y2="340" Stroke="Black" StrokeThickness="2" />
         <Label Content="TOTAL :" Canvas.Left="520" Canvas.Top="346" FontWeight="ExtraBold" FontSize="20"/>
         <TextBlock x:Name ="totalAvecRemise" Canvas.Left="653" TextWrapping="Wrap" Text="" FontWeight="ExtraBold" FontSize="20" Canvas.Top="351" Width="67"/>
-        <Button Content="SOUSMETTRE" Canvas.Left="251" Canvas.Top="366" Width="150" Height="45" FontSize="20" Background="LightYellow" FontWeight="DemiBold" Click="Sousmettre"/>
+        <Button Content="SOUSMETTRE" Style="{DynamicResource GreenButtonStyle}" Canvas.Left="308" Canvas.Top="342" Width="150" Height="45" FontSize="20" FontWeight="Bold" Click="Sousmettre"/>
     </Canvas>
 </Window>
