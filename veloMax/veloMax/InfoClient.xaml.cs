@@ -26,11 +26,12 @@ namespace veloMax
         MySqlConnection connexion;
         string typeClient;
         string telephone; //will be used to find the client we are modifying
+        int numeroFidelio;
         /// <summary>
         /// Constructeur pour modifier un client particulier
         /// </summary>
         public InfoClient(MySqlConnection connexion, string nom, string prenom, string tel, string mail, string numeroRue,
-            string rue, string codePostal, string ville, string fidelio = "", string datePaiement ="", string duree="")
+            string rue, string codePostal, string ville, string datePaiement ="", string duree="", int numeroFidelio=0)
         {
             InitializeComponent();
             this.connexion = connexion;
@@ -45,12 +46,13 @@ namespace veloMax
             this.rue.Text = rue;
             this.codePostal.Text = codePostal;
             this.ville.Text = ville;
-            this.fidelio.Text = fidelio;
             this.datePaiement.Text = datePaiement;
             this.duree.Text = duree;
 
             typeClient = "particulier";
-            telephone = tel;
+            this.telephone = tel;
+            this.numeroFidelio = numeroFidelio;
+            this.fidelioCombobox.SelectedIndex = numeroFidelio;
             
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace veloMax
 
             label1.Content = "Boutique";
             label2.Content = "Contact";
-            this.fidelio.IsEnabled = false;
+            this.fidelioCombobox.IsEnabled = false;
             this.datePaiement.IsEnabled = false;
             this.duree.IsEnabled = false;
 
@@ -90,12 +92,69 @@ namespace veloMax
         {
             if(typeClient == "particulier")
             {
-                //checking every field is completed and that fidelio related fields are either all completed or all empty
+                //checking every field is completed
                 if (nom.Text != "" && prenom.Text != "" && tel.Text != "" && mail.Text != ""
-                && rue.Text != "" && numeroRue.Text != "" && ville.Text != "" && codePostal.Text != ""
-                && !((fidelio.Text != "" && (datePaiement.Text == "" || duree.Text == "")) || (fidelio.Text == "" && (datePaiement.Text != "" || duree.Text != ""))))           
+                && rue.Text != "" && numeroRue.Text != "" && ville.Text != "" && codePostal.Text != "")           
                 {
-                    //send alter
+                    //Modification adresse
+                    string idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM adresse NATURAL JOIN individu WHERE telephone_C ={telephone}");
+                    string modifAdresse = $"UPDATE adresse " +
+                        $"SET rue='{rue.Text}', " +
+                        $"numeroRue = '{numeroRue.Text}', " +
+                        $"ville = '{ville.Text}', " +
+                        $"codeP = '{codePostal.Text}' " +
+                        $"WHERE idAdresse='{idAdresse}'";
+                    SqlBD.NoAnswerRequest(connexion, modifAdresse);
+
+                    SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 0");
+                    SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 0");
+                    
+                    //Modification client
+                    string modifClient = $"UPDATE individu " +
+                        $"SET courriel_C='{mail.Text}', " +
+                        $"nom_C = '{nom.Text}', " +
+                        $"prenom_C = '{prenom.Text}', " +
+                        $"telephone_C = '{tel.Text}' " +
+                        $"WHERE telephone_C='{telephone}'";//ancien num
+                    SqlBD.NoAnswerRequest(connexion, modifClient);
+
+                    //Modification commandes
+
+                    string modifCommande = $"UPDATE commande_particulier_effectuée " +
+                        $"SET telephone_C='{tel.Text}' " +
+                        $"WHERE telephone_C='{telephone}'"; //ancien num
+                    SqlBD.NoAnswerRequest(connexion, modifCommande);
+
+                    //Modification programme
+                    if (fidelioCombobox.SelectedIndex == 0 && numeroFidelio != 0)
+                    {
+                        //supprimer l'ancien programme au cas où il y en avait un
+                        string numeroProgramme = SqlBD.SingleValueRequest(connexion, $"SELECT numeroProgramme FROM individu WHERE telephone_C ={tel.Text}");
+                        string reqProgr = $"DELETE FROM programme WHERE numeroProgramme = {numeroProgramme}";
+                        SqlBD.NoAnswerRequest(connexion, reqProgr);
+
+                    }
+                    else
+                    {   
+                        if(fidelioCombobox.SelectedIndex != 0 || numeroFidelio != 0)
+                        {
+                            //faire les modif si besoin
+                            string numeroProgramme = SqlBD.SingleValueRequest(connexion, $"SELECT numeroProgramme FROM individu WHERE telephone_C ={tel.Text}");
+                            string modifProgramme = $"UPDATE programme " +
+                                $"SET numeroFidelio='{fidelioCombobox.SelectedIndex}', " +
+                                $"datePaiement = '{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}' " +
+                                $"WHERE numeroProgramme='{numeroProgramme}'";   //ancien num
+                            SqlBD.NoAnswerRequest(connexion, modifProgramme);
+
+                        }
+                        //sinon pas de changemnt
+                    }
+
+                    SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 1");
+                    SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 1");
+
+
+
                     MessageBox.Show($"Le profil client {nom.Text} {prenom.Text} a bien été modifié !");
                     this.Close();
                 }
@@ -112,7 +171,43 @@ namespace veloMax
                 && rue.Text != "" && numeroRue.Text != "" && ville.Text != "" && codePostal.Text != ""
                 && remise.Text != "")
                 {
-                    //send alter
+
+                    //Modification adresse
+                    string idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM adresse NATURAL JOIN boutique WHERE telephone_B ={telephone}");
+                    string modifAdresse = $"UPDATE adresse " +
+                        $"SET rue='{rue.Text}', " +
+                        $"numeroRue = '{numeroRue.Text}', " +
+                        $"ville = '{ville.Text}', " +
+                        $"codeP = '{codePostal.Text}' " +
+                        $"WHERE idAdresse='{idAdresse}'";
+                    SqlBD.NoAnswerRequest(connexion, modifAdresse);
+
+                    SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 0");
+                    SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 0");
+
+
+                    //Modification client
+                    string modifClient = $"UPDATE boutique " +
+                        $"SET courriel_B='{mail.Text}', " +
+                        $"nom_B = '{nom.Text}', " +
+                        $"contact_B = '{prenom.Text}', " +
+                        $"telephone_B = '{tel.Text}', " +
+                        $"remise = '{remise.Text}' " +
+                        $"WHERE telephone_B='{telephone}'";//ancien num
+                    SqlBD.NoAnswerRequest(connexion, modifClient);
+
+                    //Modification commandes
+
+                    string modifCommande = $"UPDATE commande_pro_effectuée " +
+                        $"SET telephone_B='{tel.Text}' " +
+                        $"WHERE telephone_B='{telephone}'"; //ancien num
+                    SqlBD.NoAnswerRequest(connexion, modifCommande);
+
+                    SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 1");
+                    SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 1");
+
+
+
                     MessageBox.Show($"La boutique {nom.Text} a bien été modifiée !");
                     this.Close();
                 }

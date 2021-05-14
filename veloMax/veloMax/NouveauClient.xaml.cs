@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.Data;
+using MySql.Data.MySqlClient;
+
 namespace veloMax
 {
     /// <summary>
@@ -19,8 +22,11 @@ namespace veloMax
     /// </summary>
     public partial class NouveauClient : Window
     {
-        public NouveauClient()
+        MySqlConnection connexion;
+
+        public NouveauClient(MySqlConnection connexion)
         {
+            this.connexion = connexion;
             InitializeComponent();
         }
         private void SelectionChangedTypeClient(object sender, RoutedEventArgs e)
@@ -45,7 +51,7 @@ namespace veloMax
 
         private void ajouterClient(object sender, RoutedEventArgs e)
         {
-            if(nom.Text =="" || prenom.Text == "" || mail.Text == "" || tel.Text == "" || rue.Text == "" || numeroRue.Text == "" || Ville.Text == "" || codePostal.Text == "")
+            if(nom.Text =="" || prenom.Text == "" || mail.Text == "" || tel.Text == "" || rue.Text == "" || numeroRue.Text == "" || ville.Text == "" || codePostal.Text == "")
             {
                 //Please fill all the required fields
                 MessageBox.Show("Tous les champs doivent être remplis");
@@ -59,15 +65,46 @@ namespace veloMax
                 }
                 else
                 {
-                    if(particulierRadio.IsChecked==true)
+                    // On ajoute l'adresse du client à la BD
+
+                    //On créer l'idAdresse :
+                    int idAdresse = Convert.ToInt32(SqlBD.SingleValueRequest(connexion, "SELECT MAX(idAdresse) from adresse")) +1;
+                    string requestAdresse = "INSERT INTO `veloMax`.`adresse` " +
+                                            "(`idAdresse`,`numeroRue`, `rue`, `ville`, `codeP`) " +
+                                            $"VALUES ('{idAdresse}', '{numeroRue.Text}', '{rue.Text}', '{ville.Text}', '{codePostal.Text}')";
+                    SqlBD.NoAnswerRequest(connexion, requestAdresse);
+
+
+                    if (particulierRadio.IsChecked == true)
                     {
                         //Commande pour les particuliers
+                        int numeroFidelio = fidelioCombobox.SelectedIndex;
+                        int numeroProgramme = Convert.ToInt32(SqlBD.SingleValueRequest(connexion, "SELECT MAX(numeroProgramme) FROM programme")) + 1; 
+
+
+                        //On ajoute le programme du client à la BD
+                        string requestFidelio = "INSERT INTO `veloMax`.`programme` " +
+                                                 "(`numeroProgramme`, `numeroFidelio`, `datePaiement`)" +
+                                                 $"VALUES('{numeroProgramme}', '{numeroFidelio}','{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}')";
+                        SqlBD.NoAnswerRequest(connexion, requestFidelio);
+
+
+                        //On ajoute le client à la BD
+                        string requestClient = "INSERT INTO `veloMax`.`individu` "+ 
+                                                "(`telephone_C`,`nom_C`, `prenom_C`, `courriel_C`, `numeroProgramme`, `idAdresse`) " +
+                                                $"VALUES('{tel.Text}', '{nom.Text}', '{prenom.Text}', '{mail.Text}', '{numeroProgramme}', '{idAdresse}')";
+                        SqlBD.NoAnswerRequest(connexion, requestClient);
+
                     }
                     else
                     {
                         //Commande pour les boutique
+
+                        string requestClient = "INSERT INTO `veloMax`.`boutique` " + 
+                                               "(`telephone_B`,`nom_B`, `courriel_B`, `contact_B`, `remise`, `idAdresse`) " +
+                                               $"VALUES('{tel.Text}', '{nom.Text}', '{mail.Text}', '{prenom.Text}', '{remise.Text}', '{idAdresse}')";
+                        SqlBD.NoAnswerRequest(connexion, requestClient);
                     }
-                    //commande sql pour ajouter le client en fonction des infos fournies
                     MessageBox.Show("Client ajouté avec succès");
 
                     nom.Text = "";
@@ -76,7 +113,7 @@ namespace veloMax
                     tel.Text = "";
                     rue.Text = "";
                     numeroRue.Text = "";
-                    Ville.Text = "";
+                    ville.Text = "";
                     codePostal.Text = "";
                     remise.Text = "";
                 }

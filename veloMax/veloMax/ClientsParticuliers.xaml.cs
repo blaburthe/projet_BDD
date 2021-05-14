@@ -65,7 +65,7 @@ namespace veloMax
                 connexion.Open();
                 MySqlCommand cmd = new MySqlCommand(request, connexion);
                 MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-                
+
                 DataSet ds = new DataSet();
                 adp.Fill(ds, "LoadDataBinding");
                 if (ds.Tables[0].Rows.Count != 0)
@@ -88,7 +88,7 @@ namespace veloMax
         private void SelectionChangedTri(object sender, RoutedEventArgs e)
         {
             string request = "Select * from adresse";
-            if (boutiquesRadio.IsChecked==true)
+            if (boutiquesRadio.IsChecked == true)
             {
                 request += " natural join boutique";
                 switch (((ComboBoxItem)triSelect.SelectedItem).Content)
@@ -102,13 +102,13 @@ namespace veloMax
                         break;
 
                     case "Fidélité":
-                        request += " order by remise asc";
+                        request += " order by remise desc";
                         break;
                 }
             }
             else
             {
-                request += " natural join individu natural join programme";
+                request += " NATURAL JOIN individu NATURAL JOIN programme NATURAL JOIN fidelio";
                 switch (((ComboBoxItem)triSelect.SelectedItem).Content)
                 {
                     case "Alphabétique":
@@ -120,18 +120,18 @@ namespace veloMax
                         break;
 
                     case "Fidélité":
-                        request += " order by descr";
+                        request += " order by numeroFidelio desc";
                         break;
                 }
             }
-            SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients ); //reload data ordered by chosen order
+            SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients); //reload data ordered by chosen order
         }
 
         private void RechercherClient(object sender, RoutedEventArgs e)
         {
             string hint = rechercheText.Text;
             string request = "";
-            if (boutiquesRadio.IsChecked==true)
+            if (boutiquesRadio.IsChecked == true)
             {
                 request =
                 $@"select * from boutique natural join adresse 
@@ -160,13 +160,13 @@ namespace veloMax
 
         private void NouveauClientOpen(object sender, RoutedEventArgs e)
         {
-            NouveauClient window = new NouveauClient();
+            NouveauClient window = new NouveauClient(connexion);
             window.Show();
         }
 
         private void SelectionChangedTypeClient(object sender, RoutedEventArgs e)
         {
-            if(particuliersRadio.IsChecked ==true) 
+            if (particuliersRadio.IsChecked == true)
             {
                 gridClient.Columns[0].Header = "Nom"; //Nom- > boutique
                 gridClient.Columns[1].Header = "Prénom"; //Prénom -> Nom contact
@@ -176,14 +176,14 @@ namespace veloMax
                 gridClient.Columns[1].DisplayMemberBinding = new Binding("prenom_C");
                 gridClient.Columns[2].DisplayMemberBinding = new Binding("telephone_C");
                 gridClient.Columns[3].DisplayMemberBinding = new Binding("courriel_C");
-                gridClient.Columns[8].DisplayMemberBinding = new Binding("descr");
+                gridClient.Columns[8].DisplayMemberBinding = new Binding("description");
                 gridClient.Columns[9].Width = 100;
                 gridClient.Columns[10].Width = 100;
 
 
-                string request = "SELECT * FROM individu NATURAL JOIN adresse NATURAL JOIN programme";
+                string request = "SELECT * FROM individu NATURAL JOIN adresse NATURAL JOIN programme NATURAL JOIN fidelio";
                 SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
-               
+
             }
             else
             {
@@ -211,7 +211,7 @@ namespace veloMax
 
         private void OuvrirInfoClient(object sender, RoutedEventArgs e)
         {
-            if(lvClients.SelectedItem != null)
+            if (lvClients.SelectedItem != null)
             {
                 DataRowView dataTable = (DataRowView)lvClients.SelectedItem;
 
@@ -224,8 +224,8 @@ namespace veloMax
                 else
                 {
                     InfoClient window = new InfoClient(connexion, dataTable["nom_C"].ToString(), dataTable["prenom_C"].ToString(), dataTable["telephone_C"].ToString(), dataTable["courriel_C"].ToString(),
-                        dataTable["numeroRue"].ToString(), dataTable["rue"].ToString(), dataTable["codeP"].ToString(), dataTable["ville"].ToString(), dataTable["descr"].ToString(),
-                        dataTable["date_paiement"].ToString(), dataTable["duree"].ToString());
+                        dataTable["numeroRue"].ToString(), dataTable["rue"].ToString(), dataTable["codeP"].ToString(), dataTable["ville"].ToString(),
+                        dataTable["datePaiement"].ToString(), dataTable["duree"].ToString(), Convert.ToInt32(dataTable["numeroFidelio"]));
                     window.Show();
                 }
             }
@@ -233,14 +233,14 @@ namespace veloMax
             {
                 MessageBox.Show("Veuillez sélectionner un client à modifier");
             }
-            
+
         }
 
         private void Actualiser(object sender, RoutedEventArgs e)
         {
             if (particuliersRadio.IsChecked == true)
             {
-                string request = "SELECT * FROM individu NATURAL JOIN adresse NATUEAL JOIN programme";
+                string request = "SELECT * FROM individu NATURAL JOIN adresse NATURAL JOIN programme NATURAL JOIN fidelio";
                 SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
             }
             else
@@ -281,6 +281,64 @@ namespace veloMax
             {
                 MessageBox.Show("Veuillez sélectionner un client pour la commande");
             }
+        }
+
+        private void SupprimerClick(object sender, RoutedEventArgs e)
+        {
+            if (lvClients.SelectedItem != null)
+            {
+                DataRowView dataTable = (DataRowView)lvClients.SelectedItem;
+
+                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 0");
+                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 0");
+
+                if (boutiquesRadio.IsChecked == true)
+                {
+                    string telB = dataTable["telephone_B"].ToString();
+                    string idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM boutique WHERE telephone_B ='{telB}'");
+                    string delAdresse = $"DELETE FROM adresse WHERE idAdresse = '{idAdresse}'";
+                    SqlBD.NoAnswerRequest(connexion, delAdresse);
+
+                    string delCommande = $"DELETE FROM commande_pro_effectuée WHERE telephone_B='{telB}'";
+                    SqlBD.NoAnswerRequest(connexion, delCommande);
+
+                    string delClient = $"DELETE FROM boutique WHERE telephone_B = '{telB}'";
+                    SqlBD.NoAnswerRequest(connexion, delClient);
+
+                    //Actualiser la page
+                    string request = "SELECT * FROM boutique NATURAL JOIN adresse";
+                    SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
+                }
+                else
+                {
+                    string telC = dataTable["telephone_C"].ToString();
+                    string idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM individu WHERE telephone_C ='{telC}'");
+                    string delAdresse = $"DELETE FROM adresse WHERE idAdresse = '{idAdresse}'";
+                    SqlBD.NoAnswerRequest(connexion, delAdresse);
+
+                    string delCommande = $"DELETE FROM commande_particulier_effectuée WHERE telephone_C='{telC}'";
+                    SqlBD.NoAnswerRequest(connexion, delCommande);
+
+                    string delProgramme = $"DELETE FROM programme WHERE numeroProgramme = '{dataTable["numeroProgramme"]}'";
+                    SqlBD.NoAnswerRequest(connexion, delProgramme);
+
+                    string delClient = $"DELETE FROM individu WHERE telephone_C = '{telC}'";
+                    SqlBD.NoAnswerRequest(connexion, delClient);
+
+                    //Actualiser la page
+                    string request = "SELECT * FROM individu NATURAL JOIN adresse NATURAL JOIN programme NATURAL JOIN fidelio";
+                    SqlBD.LoadData(connexion, request, "LoadDataBinding", lvClients);
+
+                }
+                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 1");
+                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 1");
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un client à supprimer");
+            }
+
         }
     }
 }

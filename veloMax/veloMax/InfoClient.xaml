@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="InfoClient" Height="450" Width="800">
     <Grid>
+        <Label Content="INFORMATIONS CLIENT" Height="53" Width="349" FontWeight="Bold" FontSize="20" Foreground="DarkSlateBlue" Margin="10,6,437,364.667" />
+
         <TextBox x:Name="nom" HorizontalAlignment="Left" Height="24" Margin="110,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="prenom" HorizontalAlignment="Left" Height="22" Margin="110,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tel" HorizontalAlignment="Left" Height="24" Margin="110,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -16,9 +18,16 @@
         <TextBox x:Name="ville" HorizontalAlignment="Left" Height="23" Margin="355,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="remise" HorizontalAlignment="Left" Height="23" Margin="597,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="datePaiement" HorizontalAlignment="Left" Height="23" Margin="597,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="fidelio" HorizontalAlignment="Left" Height="23" Margin="597,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="duree" HorizontalAlignment="Left" Height="23" Margin="597,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="datePaiement" HorizontalAlignment="Left" Height="23" Margin="597,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="fidelio" HorizontalAlignment="Left" Height="23" Margin="606,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="duree" HorizontalAlignment="Left" Height="23" Margin="597,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <ComboBox x:Name ="fidelioCombobox" HorizontalAlignment="Left" Margin="597,73,0,0" VerticalAlignment="Top" Width="120" Height="23">
+            <ComboBoxItem>Auncun</ComboBoxItem>
+            <ComboBoxItem>Classique</ComboBoxItem>
+            <ComboBoxItem>Or</ComboBoxItem>
+            <ComboBoxItem>Platine</ComboBoxItem>
+            <ComboBoxItem>Max</ComboBoxItem>
+        </ComboBox>
 
         <Label x:Name ="label1" Content="Nom" HorizontalAlignment="Left" Margin="28,71,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="60"/>
         <Label x:Name ="label2" Content="Prénom" HorizontalAlignment="Left" Margin="28,97,0,0" VerticalAlignment="Top" Height="24" RenderTransformOrigin="0.526,0.203"/>
@@ -34,7 +43,11 @@
         <Label Content="Durée" HorizontalAlignment="Left" Margin="516,151,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.526,0.203" Width="76"/>
         <Label Content="FIDELIO/RABAIS" HorizontalAlignment="Left" Margin="606,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="ADRESSE" HorizontalAlignment="Left" Margin="382,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Button Content="Sauvergarder les modifications" HorizontalAlignment="Left" Margin="537,242,0,0" VerticalAlignment="Top" Width="180" Background="LightYellow" Click="SauvegarderModif"/>
+        
+        
+        <Button Content="Sauvergarder les modifications" HorizontalAlignment="Left" Margin="288,228,0,0" VerticalAlignment="Top" Width="225" FontSize="15" Background="LightYellow" Foreground="DimGray" Click="SauvegarderModif" Height="28">
+
+        </Button>
 
 
     </Grid>

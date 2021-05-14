@@ -8,14 +8,15 @@
         Title="Commandes" Height="450" Width="800">
 
     <Canvas>
-        <Button Content="Fermer" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Width="75" Background="OrangeRed" Click="CloseWindow"/>
-        <ScrollViewer Canvas.Top="67" Width="290" Height="327">
-            <ListView x:Name="lvCommandes" Width="270" Height="327" SelectionMode="Single" SelectionChanged="LvCommandes_SelectionChanged" ItemsSource="{Binding Path=LoadDataBinding}">
+        <Label Content="COMMANDES" Height="53" Width="349" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Margin="10,6,437,364.667" />
+
+        <ScrollViewer Canvas.Top="104" Width="372" Height="290">
+            <ListView x:Name="lvCommandes" Width="351" Height="280" SelectionMode="Single" SelectionChanged="LvCommandes_SelectionChanged" ItemsSource="{Binding Path=LoadDataBinding}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="N°" Width="70" DisplayMemberBinding="{Binding Path=numeroCommande}"></GridViewColumn>
-                        <GridViewColumn Header="Passée le" Width="100" DisplayMemberBinding="{Binding Path=date_C}"></GridViewColumn>
-                        <GridViewColumn Header="Livrée le" Width="100" DisplayMemberBinding="{Binding Path=date_L}"></GridViewColumn>
+                        <GridViewColumn Header="Passée le" Width="138" DisplayMemberBinding="{Binding Path=date_C}"></GridViewColumn>
+                        <GridViewColumn Header="Livrée le" Width="137" DisplayMemberBinding="{Binding Path=date_L}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -27,7 +28,7 @@
                         <GridViewColumn Header="N° pièce" Width="70" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
                         <GridViewColumn Header="Qté" Width="40" DisplayMemberBinding="{Binding Path=qte}"></GridViewColumn>
                         <GridViewColumn Header="Prix U." Width="60" DisplayMemberBinding="{Binding Path=prix_P}"></GridViewColumn>
-                        <GridViewColumn Header="Description" Width="100" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                        <GridViewColumn Header="Description" Width="173" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -48,15 +49,15 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        <Label x:Name ="adresseLabel" Content="adresse ici" Canvas.Left="555" Canvas.Top="35" Width="218"/>
+        <Label x:Name ="adresseLabel" Content="" Canvas.Left="555" Canvas.Top="35" Width="218"/>
         <Label Content="Adresse de livraison :" Canvas.Left="406" Canvas.Top="35"/>
         <Label Content="TOTAL PIÈCES :" Canvas.Left="597" Canvas.Top="212" FontWeight="Bold"/>
         <Label Content="TOTAL VÉLOS :" Canvas.Left="597" Canvas.Top="390" FontWeight="Bold"/>
         <Label x:Name="totalVelos" Content="00 €" Canvas.Left="694" Canvas.Top="390" FontWeight="Bold" Width="60"/>
         <Label x:Name="totalPieces" Content="00 €" Canvas.Left="691" Canvas.Top="212" FontWeight="Bold" Width="60"/>
-        <Button Content="Livrer" Canvas.Left="24" Canvas.Top="40" Width="78" Background="#219ebc" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="LivrerCommande"/>
-        <Button Content="Supprimer" Canvas.Left="140" Canvas.Top="40" Width="84" Background="#ffb703" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="SupprimerCommande" Height="18"/>
-        <Button Content="Nouvelle commande" Canvas.Left="287" Canvas.Top="10" Width="119" Click="OuvrirNouvelleCommande" Height="27"/>
+        <Button Content="Livrer" Canvas.Left="32" Canvas.Top="69" Width="80" Background="#74D695" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="LivrerCommande" Height="18"/>
+        <Button Content="Supprimer" Canvas.Left="132" Canvas.Top="69" Width="84" Background="#ED7A7A" FontWeight="SemiBold" Foreground="White" BorderThickness="0" Click="SupprimerCommande" Height="18"/>
+        <Button Content="Nouvelle commande" Canvas.Left="240" Canvas.Top="60" Width="119" Click="OuvrirNouvelleCommande" Height="27"/>
 
     </Canvas>
 </Window>

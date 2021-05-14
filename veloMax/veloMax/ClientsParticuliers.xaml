@@ -29,9 +29,9 @@
                         <GridViewColumn Header="ZIP" Width="60" DisplayMemberBinding="{Binding Path=codeP}"></GridViewColumn>
                         <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroRue}"></GridViewColumn>
                         <GridViewColumn Header="Rue" Width="100" DisplayMemberBinding="{Binding Path=rue}"></GridViewColumn>
-                        <GridViewColumn Header="Fidelio" Width="100" DisplayMemberBinding="{Binding Path=descr}"></GridViewColumn>
+                        <GridViewColumn Header="Fidelio" Width="100" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
                         <GridViewColumn Header="Durée" Width="100" DisplayMemberBinding="{Binding Path=duree}"></GridViewColumn>
-                        <GridViewColumn Header="Paiement" Width="100" DisplayMemberBinding="{Binding Path=date_paiement}"></GridViewColumn>
+                        <GridViewColumn Header="Paiement" Width="100" DisplayMemberBinding="{Binding Path=datePaiement}"></GridViewColumn>
 
                     </GridView>
                 </ListView.View>
@@ -48,10 +48,11 @@
         <TextBox x:Name="rechercheText" Height="23" Canvas.Left="282" TextWrapping="Wrap" Text="" Canvas.Top="25" Width="154"/>
         <Button Content="Rechercher" Canvas.Left="441" Canvas.Top="28" Width="76" Click="RechercherClient"/>
         <Label x:Name ="error" Content="Aucun client trouvé !" Canvas.Left="162" Canvas.Top="25" Width="120" Foreground="Red" Opacity="0"/>
-        <Button Content="Nouveau client" Canvas.Left="664" Canvas.Top="340" Width="104" Click="NouveauClientOpen"/>
+        <Button Content="Nouveau client" Canvas.Left="642" Canvas.Top="332" Width="126" FontSize="15" Background="#74D695" FontWeight="SemiBold" Foreground="White" Click="NouveauClientOpen" Height="24"/>
         <Label Content="CLIENTS" Canvas.Left="10" Height="53" Width="143" FontWeight="Bold" FontSize="30" Foreground="DarkSlateBlue" Canvas.Top="9" />
-        <Button Content="modifier" Canvas.Left="10" Canvas.Top="340" Width="75" Click="OuvrirInfoClient"/>
-        <Button Content="actualiser" Canvas.Left="9" Canvas.Top="365" Width="76" Click="Actualiser"/>
+        <Button Content="Modifier" Canvas.Left="530" Canvas.Top="332" Width="89" FontSize="15" Background="#F8BB6C" FontWeight="SemiBold" Foreground="White" Click="OuvrirInfoClient" Height="24"/>
+        <Button Content="Actualiser" Canvas.Left="10" Canvas.Top="332" Width="89" FontSize="15" Foreground="DimGray" Background="#B0E5EC" FontWeight="SemiBold" Click="Actualiser" Height="24"/> 
+        <Button Content="Supprimer" Canvas.Left="411" Canvas.Top="332" Width="89" FontSize="15"  Background="#ED7A7A" FontWeight="SemiBold" Foreground="White" Click="SupprimerClick" Height="24"/>
         <Button x:Name="buttonSelection"  Content="Sélectionner ce client" Canvas.Left="302" Canvas.Top="350" Width="174" Height="35" FontSize="16" Background="LightSkyBlue" Click="SelectionClick" IsEnabled="False" Visibility="Hidden"/>
 
     </Canvas>

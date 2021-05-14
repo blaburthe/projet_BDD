@@ -18,7 +18,7 @@ namespace veloMax
         MySqlConnection connexion;
 
 
-        public SqlBD(){}
+        public SqlBD() { }
 
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace veloMax
             MySqlCommand commande = connexion.CreateCommand();
             commande.CommandText = requete;
             MySqlDataReader reader = commande.ExecuteReader();
-          
+
             List<List<string>> data = new List<List<string>> { };
 
             int rows = reader.FieldCount;
@@ -59,7 +59,7 @@ namespace veloMax
             while (reader.Read())
             {
                 List<string> line = new List<string> { };
-                foreach(string val in reader)
+                foreach (string val in reader)
                 {
                     line.Add(val);
                 }
@@ -84,7 +84,7 @@ namespace veloMax
                 MySqlCommand commande = connexion.CreateCommand();
                 commande.CommandText = requete;
                 MySqlDataReader reader = commande.ExecuteReader();
-            
+
                 reader.Read();
                 data = Convert.ToString(reader[0]);
                 connexion.Close();
@@ -121,5 +121,26 @@ namespace veloMax
             connexion.Close();
         }
 
+        /// <summary>
+        /// Envoie une commande sql n'attendant aucun retour (ex : insert info)
+        /// </summary>
+        /// <param name="connexion"></param>
+        /// <param name="request"></param>
+        public static void NoAnswerRequest(MySqlConnection connexion, string request)
+        {
+            try
+            {
+                connexion.Open();
+                MySqlCommand command = connexion.CreateCommand();
+                command.CommandText = request;
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            connexion.Close();
+
+        }
     }
 }

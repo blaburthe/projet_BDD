@@ -53,7 +53,7 @@
             </TabItem>
         </TabControl>
 
-        <Button Content="Ajouter" Canvas.Left="325" Canvas.Top="280" Width="76" Click="Ajouter"/>
+        <Button Content="Ajouter l'item" Canvas.Left="262" Canvas.Top="280" Width="112" Click="Ajouter" Height="25"/>
         <ListView x:Name="lvItems" Height="174" Canvas.Left="432" Canvas.Top="85" Width="355" ItemsSource="{Binding Path= itemsCommande}">
             <ListView.View>
                 <GridView>
@@ -65,7 +65,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Séléctionner un client" Canvas.Left="11" Canvas.Top="280" Width="150" Click="OuvrirSelectionnnerClient"/>
+        <Button Content="Séléctionner un client" Canvas.Left="37" Canvas.Top="280" Width="152" Click="OuvrirSelectionnnerClient" Height="25"/>
         <TextBlock x:Name="clientSelection" Canvas.Left="129" TextWrapping="Wrap" Text="" Canvas.Top="320" Height="18" Width="154"/>
         <TextBlock x:Name="adresseClient" Canvas.Left="129" TextWrapping="Wrap" Text="" Canvas.Top="343" Height="18" Width="154"/>
         <Label Content="client :" Canvas.Left="37" Canvas.Top="315" Width="70"/>

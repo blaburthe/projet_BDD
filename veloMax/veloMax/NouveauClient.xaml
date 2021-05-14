@@ -13,8 +13,8 @@
         <TextBox x:Name="mail" HorizontalAlignment="Left" Height="23" Margin="105,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="numeroRue" HorizontalAlignment="Left" Height="23" Margin="355,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="rue" HorizontalAlignment="Left" Height="23" Margin="355,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Ville" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ville" HorizontalAlignment="Left" Height="23" Margin="355,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="remise" HorizontalAlignment="Left" Height="23" Margin="355,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
         <Label x:Name ="label1" Content="Nom" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203" Width="60"/>
@@ -31,10 +31,10 @@
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="105,214,0,0" VerticalAlignment="Top" Width="75" Background="LightGreen" Click="ajouterClient"/>
         <ComboBox x:Name ="fidelioCombobox" HorizontalAlignment="Left" Margin="355,233,0,0" VerticalAlignment="Top" Width="120" Background="AliceBlue">
             <ComboBoxItem IsSelected="True">Aucun</ComboBoxItem>
-            <ComboBoxItem>classique</ComboBoxItem>
-            <ComboBoxItem>or</ComboBoxItem>
-            <ComboBoxItem>platine</ComboBoxItem>
-            <ComboBoxItem>max</ComboBoxItem>
+            <ComboBoxItem>Classique</ComboBoxItem>
+            <ComboBoxItem>Or</ComboBoxItem>
+            <ComboBoxItem>Platine</ComboBoxItem>
+            <ComboBoxItem>Max</ComboBoxItem>
         </ComboBox>
         <Label Content="Fidélio" HorizontalAlignment="Left" Margin="276,229,0,0" VerticalAlignment="Top" Width="61"/>
         <RadioButton x:Name ="particulierRadio" GroupName="radio" Content="Particulier" HorizontalAlignment="Left" Margin="261,12,0,0" VerticalAlignment="Top" Checked="SelectionChangedTypeClient" IsChecked="True"/>
