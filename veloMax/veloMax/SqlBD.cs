@@ -32,8 +32,8 @@ namespace veloMax
             try
             {
                 string connexionString = "SERVER=localhost;PORT=3306;" +
-                                         "DATABASE=loueur;" +
-                                         "UID=root;PASSWORD=rootroot";
+                                         "DATABASE=veloMax;" +
+                                         "UID=root;PASSWORD=AurelieLEDUC2021";
 
                 maConnexion = new MySqlConnection(connexionString);
                 maConnexion.Open();

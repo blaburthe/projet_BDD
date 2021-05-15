@@ -70,5 +70,10 @@ namespace veloMax
             Fournisseurs window = new Fournisseurs(connexion);
             window.Show();
         }
+        private void OuvrirStatistiques(object sender, RoutedEventArgs e)
+        {
+            Statistiques window = new Statistiques(connexion);
+            window.Show();
+        }
     }
 }

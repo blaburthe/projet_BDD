@@ -17,23 +17,23 @@
     </Window.Resources>
     <Canvas>
 
-        <ScrollViewer Canvas.Top="93" Canvas.Left="31" Width="230" Height="110" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvQteVenduPiece_Copy" Width="215" Height="113" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
+        <ScrollViewer Canvas.Top="93" Canvas.Left="31" Width="230" Height="141" RenderTransformOrigin="1.106,0.561">
+            <ListView x:Name="lvQteVenduPiece" Width="215" Height="149" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques1">
                         <GridViewColumn Header="Numéro pièce" Width="100" DisplayMemberBinding="{Binding numeroPiece}"/>
-                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding qte}"/>
+                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding sum(qte)}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
 
         </ScrollViewer>
-        <ScrollViewer Canvas.Top="220" Canvas.Left="31" Width="230" Height="111" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvQteModele" Width="215" Height="113" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}" RenderTransformOrigin="0.62,0.733">
+        <ScrollViewer Canvas.Top="252" Canvas.Left="31" Width="230" Height="160" RenderTransformOrigin="1.106,0.561">
+            <ListView x:Name="lvQteModele" Width="207" Height="172" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques2">
                         <GridViewColumn Header="Numéro modèle" Width="100" DisplayMemberBinding="{Binding numeroModele}"/>
-                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding qte}"/>
+                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding sum(qte)}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -41,7 +41,7 @@
         </ScrollViewer>
 
         <ScrollViewer Canvas.Top="96" Canvas.Left="304" Width="226" Height="74" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvClientAdhesion" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}" RenderTransformOrigin="0.62,0.733">
+            <ListView x:Name="lvClientAdhesion" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques3">
                         <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_C}"/>
@@ -52,7 +52,7 @@
 
         </ScrollViewer>
         <ScrollViewer Canvas.Top="193" Canvas.Left="304" Width="226" Height="74" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvClientAdhesion2" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}" RenderTransformOrigin="0.62,0.733">
+            <ListView x:Name="lvClientAdhesion2" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques4">
                         <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_C}"/>
@@ -63,7 +63,7 @@
 
         </ScrollViewer>
         <ScrollViewer Canvas.Top="292" Canvas.Left="304" Width="226" Height="74" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvClientAdhesion3" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}" RenderTransformOrigin="0.62,0.733">
+            <ListView x:Name="lvClientAdhesion3" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques5">
                         <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_C}"/>
@@ -74,7 +74,7 @@
 
         </ScrollViewer>
         <ScrollViewer Canvas.Top="388" Canvas.Left="304" Width="226" Height="74" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvClientAdhesion4" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}" RenderTransformOrigin="0.62,0.733">
+            <ListView x:Name="lvClientAdhesion4" Width="208" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques6">
                         <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_C}"/>
@@ -86,7 +86,7 @@
         </ScrollViewer>
 
         <ScrollViewer Canvas.Top="96" Canvas.Left="565" Width="246" Height="74" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvDateAdhésion" Width="230" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}" RenderTransformOrigin="0.62,0.733" SelectionChanged="LvDateAdhésion_SelectionChanged">
+            <ListView x:Name="lvDateAdhésion" Width="230" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques7">
                         <GridViewColumn Header="Num Programme" Width="100" DisplayMemberBinding="{Binding NumeroProgramme}"/>
