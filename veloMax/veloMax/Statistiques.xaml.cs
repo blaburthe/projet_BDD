@@ -71,6 +71,43 @@ namespace veloMax
                              AND f.numeroFidelio=4;";
             SqlBD.LoadData(connexion, fidelio4, "LoadDataBinding", lvClientAdhesion4);
 
+            string classement1 = $@"SELECT i.nom_C, sum(c.qte) c
+                                    FROM individu i, commande_particulier_effectuée cp, commande co , compose_piece c 
+                                    WHERE i.telephone_C=cp.telephone_C      
+                                    AND co.numeroCommande=cp.numeroCommande
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY i.nom_C 
+                                    ORDER BY sum(c.qte) DESC;";
+            SqlBD.LoadData(connexion, classement1, "LoadDataBinding", lvClientClassement1);
+
+            string classement2 = $@"SELECT i.nom_C, sum(p.prix_P) m
+                                    FROM individu i, commande_particulier_effectuée cp, commande co , compose_piece c, piece p 
+                                    WHERE p.numeroPiece=c.numeroPiece 
+                                    AND i.telephone_C=cp.telephone_C 
+                                    AND co.numeroCommande=cp.numeroCommande 
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY i.nom_C ORDER BY sum(p.prix_P) DESC;";
+            SqlBD.LoadData(connexion, classement2, "LoadDataBinding", lvClientClassement2);
+
+            string classement3 = $@"SELECT b.nom_B, sum(c.qte) k
+                                    FROM boutique b, commande_pro_effectuée cp, commande co , compose_piece c 
+                                    WHERE b.telephone_B=cp.telephone_B 
+                                    AND co.numeroCommande=cp.numeroCommande 
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY b.nom_b 
+                                    ORDER BY sum(c.qte) DESC;";
+            SqlBD.LoadData(connexion, classement3, "LoadDataBinding", lvClientClassement3);
+
+            string classement4 = $@"SELECT b.nom_B, sum(p.prix_P) L
+                                    FROM boutique b, commande_pro_effectuée cp, commande co , compose_piece c, piece p 
+                                    WHERE p.numeroPiece=c.numeroPiece 
+                                    AND b.telephone_B=cp.telephone_B 
+                                    AND co.numeroCommande=cp.numeroCommande 
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY b.nom_b 
+                                    ORDER BY sum(c.qte) DESC;";
+            SqlBD.LoadData(connexion, classement4, "LoadDataBinding", lvClientClassement4);
+
         }
 
 
@@ -110,6 +147,8 @@ namespace veloMax
                              AND f.numeroFidelio=1;";
             SqlBD.LoadData(connexion, requete6, "LoadDataBindingProgramme4", lvClientAdhesion4);
         }
+
+        
     }
         
 }

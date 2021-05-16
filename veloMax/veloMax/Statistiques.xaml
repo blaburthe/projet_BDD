@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:veloMax"
         mc:Ignorable="d"
-        Title="Statistiques" Height="546.528" Width="970.293"
+        Title="Statistiques" Height="546.528" Width="1128.693"
         Style="{DynamicResource GrayWindow}">
-    
-    <Canvas Margin="0,0,-0.2,-29">
+
+    <Canvas Margin="0,0,-6,-29.2">
 
         <ScrollViewer Canvas.Top="93" Canvas.Left="31" Width="230" Height="141" RenderTransformOrigin="1.106,0.561">
             <ListView x:Name="lvQteVenduPiece" Width="215" Height="149" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
@@ -22,7 +22,7 @@
 
         </ScrollViewer>
         <ScrollViewer Canvas.Top="252" Canvas.Left="31" Width="230" Height="160" RenderTransformOrigin="1.106,0.561">
-            <ListView x:Name="lvQteModele" Width="207" Height="160" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
+            <ListView x:Name="lvQteModele" Width="217" Height="177" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridStatistiques2">
                         <GridViewColumn Header="Numéro modèle" Width="100" DisplayMemberBinding="{Binding numeroModele}"/>
@@ -85,12 +85,15 @@
         <Label Content="STATISTIQUES" Style="{DynamicResource Titre}" Canvas.Left="28" Height="53" Width="224" Canvas.Top="9" />
         <Label Content="ITEMS VENDUS " Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="31" Canvas.Top="58" Width="113"/>
         <Label Content="LISTE DES MEMBRES " Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="304" Canvas.Top="58" Width="125"/>
+        <Label Content="CLASSEMENT DES CLIENTS" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="644" Canvas.Top="58" Width="160"/>
         <Label Content="Fidelio " Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="304" Canvas.Top="73" Width="125"/>
+        <Label Content="Individus " Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="646" Canvas.Top="73" Width="125"/>
+        <Label Content="Boutique " Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="646" Canvas.Top="171" Width="125"/>
         <Label Content="Fidelio Or" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="304" Canvas.Top="170" Width="125"/>
         <Label Content="Fidelio Platine" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="304" Canvas.Top="267" Width="125"/>
         <Label Content="Fidelio Max" Style="{DynamicResource DisplayInfoLabel}" Canvas.Left="301" Canvas.Top="364" Width="125"/>
         <Button Content="Actualiser" Style="{DynamicResource BlueButtonStyle}" Canvas.Left="27" Canvas.Top="468" Width="89" FontSize="15" FontWeight="SemiBold" Click="Actualiser" Height="24"/>
-        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" FontWeight="SemiBold" Click="CloseWindow" Height="22" Canvas.Left="878" Canvas.Top="10" RenderTransformOrigin="1.319,0.59"/>
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" FontWeight="SemiBold" Click="CloseWindow" Height="22" Canvas.Left="1024" Canvas.Top="22" RenderTransformOrigin="1.319,0.59"/>
         <Line  X1="720" Y1="0" X2="500" Y2="340" Stroke="Black" StrokeThickness="0.3" Canvas.Left="249" Canvas.Top="-78" RenderTransformOrigin="0.811,1.335" Height="925" Width="748" >
             <Line.RenderTransform>
                 <TransformGroup>
@@ -101,6 +104,60 @@
                 </TransformGroup>
             </Line.RenderTransform>
         </Line>
+        <Line  X1="720" Y1="0" X2="500" Y2="340" Stroke="Black" StrokeThickness="0.3" Canvas.Left="605" Canvas.Top="-74" RenderTransformOrigin="0.811,1.335" Height="925" Width="748" >
+            <Line.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-32.879"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Line.RenderTransform>
+        </Line>
+        <ScrollViewer Canvas.Top="96" Canvas.Left="646" Width="220" Height="70" RenderTransformOrigin="1.106,0.561">
+            <ListView x:Name="lvClientClassement1" Width="220" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
+                <ListView.View>
+                    <GridView x:Name="gridStatistiques7">
+                        <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_C}"/>
+                        <GridViewColumn Header="Nb de pièces" Width="100" DisplayMemberBinding="{Binding c}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </ScrollViewer>
+        <ScrollViewer Canvas.Top="96" Canvas.Left="884" Width="220" Height="70" RenderTransformOrigin="1.106,0.561">
+            <ListView x:Name="lvClientClassement2" Width="220" Height="81" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
+                <ListView.View>
+                    <GridView x:Name="gridStatistiques8">
+                        <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_C}"/>
+                        <GridViewColumn Header="Montant" Width="100" DisplayMemberBinding="{Binding m}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </ScrollViewer>
+        <ScrollViewer Canvas.Top="197" Canvas.Left="646" Width="220" Height="70" RenderTransformOrigin="1.106,0.561">
+            <ListView x:Name="lvClientClassement3" Width="220" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
+                <ListView.View>
+                    <GridView x:Name="gridStatistiques9">
+                        <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_B}"/>
+                        <GridViewColumn Header="Nb de pièces" Width="100" DisplayMemberBinding="{Binding k}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </ScrollViewer>
+        <ScrollViewer Canvas.Top="197" Canvas.Left="886" Width="220" Height="70" RenderTransformOrigin="1.106,0.561">
+            <ListView x:Name="lvClientClassement4" Width="220" Height="75" SelectionMode="Single" ItemsSource="{Binding LoadDataBinding}">
+                <ListView.View>
+                    <GridView x:Name="gridStatistiques10">
+                        <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding nom_B}"/>
+                        <GridViewColumn Header="Montant" Width="100" DisplayMemberBinding="{Binding L}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </ScrollViewer>
 
     </Canvas>
 </Window>
