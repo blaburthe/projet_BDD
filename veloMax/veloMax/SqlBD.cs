@@ -24,27 +24,7 @@ namespace veloMax
         /// <summary>
         /// Connexion à la base de donnée
         /// </summary>
-        public void Connexion()
-        {
-            #region Ouverture de connexion
-
-            MySqlConnection maConnexion = null;
-            try
-            {
-                string connexionString = "SERVER=localhost;PORT=3306;" +
-                                         "DATABASE=veloMax;" +
-                                         "UID=root;PASSWORD=AurelieLEDUC2021";
-
-                maConnexion = new MySqlConnection(connexionString);
-                maConnexion.Open();
-                connexion = maConnexion;
-            }
-            catch (MySqlException e)
-            {
-                Console.WriteLine(" ErreurConnexion : " + e.ToString());
-            }
-            #endregion
-        }
+        
 
         public List<List<string>> Requete(string requete)
         {
