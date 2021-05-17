@@ -105,7 +105,7 @@ namespace veloMax
                                     AND co.numeroCommande=cp.numeroCommande 
                                     AND co.numeroCommande=c.numeroCommande 
                                     GROUP BY b.nom_b 
-                                    ORDER BY sum(c.qte) DESC;";
+                                    ORDER BY sum(p.prix_P) DESC;";
             SqlBD.LoadData(connexion, classement4, "LoadDataBinding", lvClientClassement4);
 
         }
@@ -113,39 +113,76 @@ namespace veloMax
 
         public void Actualiser(object sender, RoutedEventArgs e)
         {
-            string request1 = "SELECT numeroPiece, sum(qte) FROM compose_piece GROUP BY numeroPiece;";
-            SqlBD.LoadData(connexion, request1, "LoadDataBindingPiece", lvQteVenduPiece);
+            string requete1 = "SELECT numeroPiece, sum(qte) FROM compose_piece GROUP BY numeroPiece;";
+            SqlBD.LoadData(connexion, requete1, "LoadDataBinding", lvQteVenduPiece);
 
-            string request2 = "SELECT numeroModele, sum(qte) FROM compose_modele GROUP BY numeroModele;";
-            SqlBD.LoadData(connexion, request2, "LoadDataBindingModele", lvQteModele);
+            string requete2 = "SELECT numeroModele, sum(qte) FROM compose_modele GROUP BY numeroModele;";
+            SqlBD.LoadData(connexion, requete2, "LoadDataBinding", lvQteModele);
 
             string requete3 = $@"SELECT i.nom_C, i.prenom_C
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=1;";
-            SqlBD.LoadData(connexion, requete3, "LoadDataBindingProgramme1", lvClientAdhesion);
+            SqlBD.LoadData(connexion, requete3, "LoadDataBinding", lvClientAdhesion);
 
             string requete4 = $@"SELECT i.nom_C, i.prenom_C
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=2;";
-            SqlBD.LoadData(connexion, requete4, "LoadDataBindingProgramme2", lvClientAdhesion2);
+            SqlBD.LoadData(connexion, requete4, "LoadDataBinding", lvClientAdhesion2);
 
             string requete5 = $@"SELECT i.nom_C, i.prenom_C
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=3;";
-            SqlBD.LoadData(connexion, requete5, "LoadDataProgramme3", lvClientAdhesion3);
+            SqlBD.LoadData(connexion, requete5, "LoadDataBinding", lvClientAdhesion3);
 
             string requete6 = $@"SELECT i.nom_C, i.prenom_C
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=1;";
-            SqlBD.LoadData(connexion, requete6, "LoadDataBindingProgramme4", lvClientAdhesion4);
+            SqlBD.LoadData(connexion, requete6, "LoadDataBinding", lvClientAdhesion4);
+
+            string requete7 = $@"SELECT i.nom_C, sum(c.qte) c
+                                    FROM individu i, commande_particulier_effectuée cp, commande co , compose_piece c 
+                                    WHERE i.telephone_C=cp.telephone_C      
+                                    AND co.numeroCommande=cp.numeroCommande
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY i.nom_C 
+                                    ORDER BY sum(c.qte) DESC;";
+            SqlBD.LoadData(connexion, requete7, "LoadDataBinding", lvClientClassement1);
+
+            string requete8 = $@"SELECT i.nom_C, sum(p.prix_P) m
+                                    FROM individu i, commande_particulier_effectuée cp, commande co , compose_piece c, piece p 
+                                    WHERE p.numeroPiece=c.numeroPiece 
+                                    AND i.telephone_C=cp.telephone_C 
+                                    AND co.numeroCommande=cp.numeroCommande 
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY i.nom_C ORDER BY sum(p.prix_P) DESC;";
+            SqlBD.LoadData(connexion, requete8, "LoadDataBinding", lvClientClassement2);
+
+            string requete9 = $@"SELECT b.nom_B, sum(c.qte) k
+                                    FROM boutique b, commande_pro_effectuée cp, commande co , compose_piece c 
+                                    WHERE b.telephone_B=cp.telephone_B 
+                                    AND co.numeroCommande=cp.numeroCommande 
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY b.nom_b 
+                                    ORDER BY sum(c.qte) DESC;";
+            SqlBD.LoadData(connexion, requete9, "LoadDataBinding", lvClientClassement3);
+
+            string requete10 = $@"SELECT b.nom_B, sum(p.prix_P) L
+                                    FROM boutique b, commande_pro_effectuée cp, commande co , compose_piece c, piece p 
+                                    WHERE p.numeroPiece=c.numeroPiece 
+                                    AND b.telephone_B=cp.telephone_B 
+                                    AND co.numeroCommande=cp.numeroCommande 
+                                    AND co.numeroCommande=c.numeroCommande 
+                                    GROUP BY b.nom_b 
+                                    ORDER BY sum(p.prix_P) DESC;";
+            SqlBD.LoadData(connexion, requete10, "LoadDataBinding", lvClientClassement4);
         }
 
         
