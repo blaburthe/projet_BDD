@@ -40,8 +40,8 @@ namespace veloMax
         {
             this.connexion = connexion;
             InitializeComponent();
-            SqlBD.LoadData(connexion, "SELECT numeroPiece, sum(qte) FROM compose_piece GROUP BY numeroPiece;", "LoadDataBinding", lvQteVenduPiece);
-            SqlBD.LoadData(connexion, "SELECT numeroModele, sum(qte) FROM compose_modele GROUP BY numeroModele;", "LoadDataBinding", lvQteModele);
+            SqlBD.LoadData(connexion, "SELECT numeroPiece, sum(qte) FROM compose_piece GROUP BY numeroPiece ORDER BY sum(qte) DESC;", "LoadDataBinding", lvQteVenduPiece);
+            SqlBD.LoadData(connexion, "SELECT numeroModele, sum(qte) FROM compose_modele GROUP BY numeroModele ORDER BY sum(qte) DESC;", "LoadDataBinding", lvQteModele);
 
             string fidelio1 = $@"SELECT i.nom_C, i.prenom_C, date_add(p.datePaiement, interval 1 year) y
                              FROM individu i, fidelio f, programme p 
@@ -119,28 +119,28 @@ namespace veloMax
             string requete2 = "SELECT numeroModele, sum(qte) FROM compose_modele GROUP BY numeroModele;";
             SqlBD.LoadData(connexion, requete2, "LoadDataBinding", lvQteModele);
 
-            string requete3 = $@"SELECT i.nom_C, i.prenom_C
+            string requete3 = $@"SELECT i.nom_C, i.prenom_C, date_add(p.datePaiement, interval 1 year) y
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=1;";
             SqlBD.LoadData(connexion, requete3, "LoadDataBinding", lvClientAdhesion);
 
-            string requete4 = $@"SELECT i.nom_C, i.prenom_C
+            string requete4 = $@"SELECT i.nom_C, i.prenom_C, date_add(p.datePaiement, interval 2 year) x
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=2;";
             SqlBD.LoadData(connexion, requete4, "LoadDataBinding", lvClientAdhesion2);
 
-            string requete5 = $@"SELECT i.nom_C, i.prenom_C
+            string requete5 = $@"SELECT i.nom_C, i.prenom_C, date_add(p.datePaiement, interval 3 year) z
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
                              AND f.numeroFidelio=3;";
             SqlBD.LoadData(connexion, requete5, "LoadDataBinding", lvClientAdhesion3);
 
-            string requete6 = $@"SELECT i.nom_C, i.prenom_C
+            string requete6 = $@"SELECT i.nom_C, i.prenom_C, date_add(p.datePaiement, interval 4 year) a
                              FROM individu i, fidelio f, programme p 
                              WHERE i.numeroProgramme=p.numeroProgramme 
                              AND p.numeroFidelio=f.numeroFidelio 
