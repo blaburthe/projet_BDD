@@ -19,11 +19,6 @@ namespace veloMax
 
 
         public SqlBD() { }
-
-
-        /// <summary>
-        /// Connexion à la base de donnée
-        /// </summary>
         
 
         public List<List<string>> Requete(string requete)

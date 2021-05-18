@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Globalization;
 
 namespace veloMax
 {
@@ -50,6 +51,7 @@ namespace veloMax
         {
             Clients window = new Clients(connexion);
             window.Show();
+            
         }
         public void RafraichirStock()
         {
@@ -75,5 +77,39 @@ namespace veloMax
             Statistiques window = new Statistiques(connexion);
             window.Show();
         }
+    }
+
+    [ValueConversion(typeof(object), typeof(int))]
+    public class IsLessThan2IncludedConverter : IValueConverter
+
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (int)value <= 2;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    [ValueConversion(typeof(object), typeof(int))]
+    public class IsBetween2and4IncludedConverter : IValueConverter
+
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((int)value <= 4 && (int)value >2);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

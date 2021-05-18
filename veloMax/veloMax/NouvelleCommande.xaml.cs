@@ -154,31 +154,42 @@ namespace veloMax
             else
             {
                 //on créer un identifiant de commande
-                //select max(numeroCommande) from commande
+                int idCommande = Convert.ToInt32(SqlBD.SingleValueRequest(connexion, "SELECT MAX(numeroCommande) FROM commande")) + 1;
+
+                string idAdresse = "";
                 if (TypeCommande == "pro")
                 {
-                    //select idAdresse from Boutique where telephone_B = telClient
-                    //insert info commande pro effectue (telClient, IdCommande)
+                    idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM boutique WHERE telephone_B = {telClient}");
+                    string ajoutCommande = $"INSERT INTO `veloMax`.`commande` (`numeroCommande`, `date_C`, `date_L`, `idAdresse`) " +
+                                            $"VALUES ({idCommande}, '{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}', null,'{idAdresse}')";
+                    SqlBD.NoAnswerRequest(connexion, ajoutCommande);
+                    SqlBD.NoAnswerRequest(connexion, $"INSERT INTO `veloMax`.`commande_pro_effectuée` (`numeroCommande`,`telephone_B`) VALUES ('{idCommande}','{telClient}')");
                 }
                 else
                 {
-                    //select idAdresse from Individu where telephone_C = telClient 
-                    //Insert info commande_part_effectue (telClient, IdCommande)
+                    idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM individu WHERE telephone_C = {telClient}");
+                    string ajoutCommande = $"INSERT INTO `veloMax`.`commande` (`numeroCommande`, `date_C`, `date_L`, `idAdresse`) " +
+                                            $"VALUES ({idCommande}, '{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}', null,'{idAdresse}')";
+                    SqlBD.NoAnswerRequest(connexion, ajoutCommande);
+                    SqlBD.NoAnswerRequest(connexion, $"INSERT INTO `veloMax`.`commande_particulier_effectuée` (`numeroCommande`,`telephone_C`) VALUES ('{idCommande}','{telClient}')");
                 }
-                //Insert info in commande (idCommande, datetime.Now, null, idAdresse)
+
+                
+         
                 foreach (ItemCommande item in itemsCommande)
                 {
                     if (item.Type == "piece")
                     {
-                        //Insert info in compose_piece(item.ID, idCommande)   
+                        string ajoutPiece = $"INSERT INTO `veloMax`.`compose_piece` (`numeroCommande`,`numeroPiece`, `qte`) VALUES ('{idCommande}','{item.IdItem}', '{item.Quantite}')";
+                        SqlBD.NoAnswerRequest(connexion, ajoutPiece);   
                     }
                     else
                     {
-                        //Insert info in compose_modele(item.ID, idCommande)
+                        string ajoutModele = $"INSERT INTO `veloMax`.`compose_modele` (`numeroCommande`,`numeroModele`, `qte`) VALUES ('{idCommande}','{item.IdItem}', '{item.Quantite}')";
+                        SqlBD.NoAnswerRequest(connexion, ajoutModele);
                     }
-
-                    
                 }
+                MessageBox.Show($"Commande n°{idCommande} sousmise !");
             }
         }
     }

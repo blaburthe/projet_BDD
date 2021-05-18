@@ -28,34 +28,14 @@ namespace veloMax
         {
             this.connexion = connexion;
             InitializeComponent();
-            LoadData("SELECT * FROM fournisseur NATURAL JOIN adresse");
+            SqlBD.LoadData(connexion, "SELECT * FROM fournisseur NATURAL JOIN adresse", "LoadDataBinding", lvFournisseurs);
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-        private void LoadData(string request)
-        {
-            try
-            {
-                connexion.Open();
-                MySqlCommand cmd = new MySqlCommand(request, connexion);
-                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-
-                DataSet ds = new DataSet();
-                adp.Fill(ds, "LoadDataBinding");
-                lvFournisseurs.DataContext = ds;
-                
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            connexion.Close();
-        }
-
+        
         private void OuvrirInfoFournisseur(object sender, RoutedEventArgs e)
         {
             if (lvFournisseurs.SelectedItem != null)
@@ -79,5 +59,40 @@ namespace veloMax
             window.Show();
         }
 
+        private void SupprimerFournisseur(object sender, RoutedEventArgs e)
+        {
+            if(lvFournisseurs.SelectedItem != null)
+            {
+                DataRowView dataTable = (DataRowView)lvFournisseurs.SelectedItem;
+
+                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 0");
+                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 0");
+
+                string siret = dataTable["siret"].ToString();
+                string idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM fournisseur WHERE siret ='{siret}'");
+                string delAdresse = $"DELETE FROM adresse WHERE idAdresse = '{idAdresse}'";
+                SqlBD.NoAnswerRequest(connexion, delAdresse);
+                string delFournit = $"DELETE FROM fournit WHERE siret='{siret}'";
+                SqlBD.NoAnswerRequest(connexion, delFournit);
+                string delProcure = $"DELETE FROM procure WHERE siret='{siret}'";
+                SqlBD.NoAnswerRequest(connexion, delFournit);
+                string delFournisseur = $"DELETE FROM fournisseur WHERE siret='{siret}'";
+                SqlBD.NoAnswerRequest(connexion, delFournisseur);
+
+                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 1");
+                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 1");
+
+                MessageBox.Show($"Le fournisseur {dataTable["nom_F"]} a bien été supprimé");
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un fournisseur à supprimer");
+            }
+        }
+
+        private void Actualiser(object sender, RoutedEventArgs e)
+        {
+            SqlBD.LoadData(connexion, "SELECT * FROM fournisseur NATURAL JOIN adresse", "LoadDataBinding", lvFournisseurs);
+        }
     }
 }
