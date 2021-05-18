@@ -28,8 +28,10 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
-        <Button Content="Nouveau fournisseur" Style="{DynamicResource GreenButtonStyle}" Canvas.Left="600" Canvas.Top="340" Width="168" FontWeight ="Bold" FontSize="15" Click="OuvrirNouveauFournisseur" Height="30"/>
-        <Button Content="modifier"  Style="{DynamicResource OrangeButtonStyle}" Canvas.Left="439" Canvas.Top="340" Width="131" FontWeight ="Bold" FontSize="15" Click="OuvrirInfoFournisseur" Height="30"/>
+        <Button Content="Nouveau fournisseur" Style="{DynamicResource GreenButtonStyle}" Canvas.Left="614" Canvas.Top="340" Width="154" FontWeight ="SemiBold" FontSize="15" Click="OuvrirNouveauFournisseur" Height="30"/>
+        <Button Content="modifier"  Style="{DynamicResource OrangeButtonStyle}" Canvas.Left="505" Canvas.Top="340" Width="94" FontWeight ="SemiBold" FontSize="15" Click="OuvrirInfoFournisseur" Height="30" RenderTransformOrigin="0.702,0.472"/>
+        <Button Content="Supprimer"  Style="{DynamicResource RedButtonStyle}" Canvas.Left="395" Canvas.Top="340" Width="94" FontWeight ="SemiBold" FontSize="15" Click="SupprimerFournisseur" Height="30"/>
+        <Button Content="Actualiser" Canvas.Left="10" Canvas.Top="327" Width="75" Click="Actualiser"/>
 
 
     </Canvas>

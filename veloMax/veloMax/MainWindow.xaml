@@ -21,6 +21,45 @@
             <TabItem Header="pièces" Width="80">
                 <ScrollViewer Margin="0,-1,-5,-5">
                     <ListView Name="lvStockPiece" Width="426" Height="268" ItemsSource="{Binding Path=LoadDataBindingPiece}">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Resources>
+                                    <local:IsLessThan2IncludedConverter x:Key="conv2"/>
+                                    <local:IsBetween2and4IncludedConverter x:Key="conv4"/>
+                                </Style.Resources>
+                                <Setter Property="Foreground" Value="#484848"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <!--On overide le template par défaut pour enlever le gradient de couleur moche-->
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border Padding="{TemplateBinding Padding}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    SnapsToDevicePixels="true">
+                                                <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path =stock, Converter={StaticResource conv2}}" Value="True">
+                                        <Setter Property="Background" Value="#FAD9D9" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path =stock, Converter={StaticResource conv4}}" Value="True">
+                                        <Setter Property="Background" Value="#FDECD5" />
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#DDE7F7" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#DDE7F7"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Resources>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="n°" Width="60" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
@@ -34,6 +73,45 @@
             <TabItem Header="vélos"  Width="80">
                 <ScrollViewer Margin="0,-1,-5,0">
                     <ListView Name="lvStockVelo" Width="423" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBindingModele}">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Resources>
+                                    <local:IsLessThan2IncludedConverter x:Key="conv2"/>
+                                    <local:IsBetween2and4IncludedConverter x:Key="conv4"/>
+                                </Style.Resources>
+                                <Setter Property="Foreground" Value="#484848"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <!--On overide le template par défaut pour enlever le gradient de couleur moche-->
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border Padding="{TemplateBinding Padding}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    SnapsToDevicePixels="true">
+                                                <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path =stock, Converter={StaticResource conv2}}" Value="True">
+                                        <Setter Property="Background" Value="#FAD9D9" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path =stock, Converter={StaticResource conv4}}" Value="True">
+                                        <Setter Property="Background" Value="#FDECD5" />
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#DDE7F7" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#DDE7F7"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Resources>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="N°" Width="60" DisplayMemberBinding="{Binding Path=numeroModele}"></GridViewColumn>

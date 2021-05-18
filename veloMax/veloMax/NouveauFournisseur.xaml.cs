@@ -45,7 +45,22 @@ namespace veloMax
             }
             else
             {
-                //insert info sql.....
+                // On ajoute l'adresse du client à la BD
+
+                //On créer l'idAdresse :
+                int idAdresse = Convert.ToInt32(SqlBD.SingleValueRequest(connexion, "SELECT MAX(idAdresse) from adresse")) + 1;
+                string ajoutAdresse = "INSERT INTO `veloMax`.`adresse` " +
+                                        "(`idAdresse`,`numeroRue`, `rue`, `ville`, `codeP`) " +
+                                        $"VALUES ('{idAdresse}', '{numeroRue.Text}', '{rue.Text}', '{ville.Text}', '{codePostal.Text}')";
+                SqlBD.NoAnswerRequest(connexion, ajoutAdresse);
+
+                //On ajoute le fournisseur
+                string ajoutFournisseur = "INSERT INTO `veloMax`.`fournisseur` " +
+                                        "(`siret`, `nom_F`, `contact_F`, `libelle`, `idAdresse`) " +
+                                        $"VALUES('{siret.Text}', '{nom.Text}', '{contact.Text}', '{noteCombobox.SelectedIndex +1}', '{idAdresse}')";
+                SqlBD.NoAnswerRequest(connexion, ajoutFournisseur);
+
+
                 MessageBox.Show($"Le fournisseur {nom.Text} a été ajouté avec succès !");
                 nom.Text = "";
                 contact.Text = "";

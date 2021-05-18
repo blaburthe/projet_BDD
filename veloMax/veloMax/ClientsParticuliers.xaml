@@ -52,7 +52,7 @@
         <Button Content="Nouveau client" Style="{DynamicResource GreenButtonStyle}" Canvas.Left="642" Canvas.Top="338" Width="126" FontSize="15" FontWeight="SemiBold" Click="NouveauClientOpen" Height="24"/>
         <Label Content="CLIENTS" Style="{DynamicResource Titre}" Canvas.Left="10" Height="53" Width="143" Canvas.Top="9" />
         <Button x:Name="buttonModifier" Content="Modifier" Style="{DynamicResource OrangeButtonStyle}" Canvas.Left="526" Canvas.Top="338" Width="89" FontSize="15" FontWeight="SemiBold" Click="OuvrirInfoClient" Height="24"/>
-        <Button Content="Actualiser" Style="{DynamicResource BlueButtonStyle}" Canvas.Left="10" Canvas.Top="338" Width="89" FontSize="15" FontWeight="SemiBold" Click="Actualiser" Height="24"/>
+        <Button Content="Actualiser" Canvas.Left="10" Canvas.Top="338" Width="89" Click="Actualiser" Height="20"/>
         <Button x:Name="buttonSupprimer" Content="Supprimer" Style="{DynamicResource RedButtonStyle}" Canvas.Left="411" Canvas.Top="338" Width="89" FontSize="15" FontWeight="SemiBold" Click="SupprimerClick" Height="24"/>
         <Button x:Name="buttonSelection" Style="{DynamicResource OrangeButtonStyle}"  Content="Sélectionner ce client" Canvas.Left="314" Canvas.Top="338" Width="172" Height="24" FontSize="15" FontWeight="SemiBold" Click="SelectionClick" IsEnabled="False" Visibility="Hidden"/>
         <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" FontWeight="SemiBold" Click="CloseWindow" Height="22" Canvas.Left="735" Canvas.Top="10"/>
