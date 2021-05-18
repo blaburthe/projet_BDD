@@ -15,8 +15,9 @@
         <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="724" Canvas.Top="10"/>
         <Button Content="Clients" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirClients" Canvas.Left="628" Canvas.Top="88" Height="41"/>
         <Button Content="Fournisseurs" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirFournisseurs" Canvas.Left="465" Canvas.Top="154" Height="41"/>
+        <Button Content="Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" FontSize="17" Click="ChargementDonnees" Canvas.Left="668" Canvas.Top="345" Height="26"/>
         <Button Content="Statistiques" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirStatistiques" Canvas.Left="628" Canvas.Top="154" Height="41"/>
-        
+
         <TabControl TabStripPlacement="Top" Width="423" Height="292" Canvas.Left="10" Canvas.Top="59">
             <TabItem Header="pièces" Width="80">
                 <ScrollViewer Margin="0,-1,-5,-5">

@@ -16,6 +16,10 @@ using System.Windows.Shapes;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Xml;
+using System.Xml.XPath;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace veloMax
 {
@@ -74,6 +78,27 @@ namespace veloMax
         {
             Statistiques window = new Statistiques(connexion);
             window.Show();
+        }
+        public void ChargementDonnees(object sender, RoutedEventArgs e)
+        {
+            XmlDocument docXml = new XmlDocument();
+            
+            XmlElement racine = docXml.CreateElement("veloMax");
+            docXml.AppendChild(racine);
+
+
+            XmlDeclaration xmldecl = docXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
+            docXml.InsertBefore(xmldecl, racine);
+            
+            XmlElement numeroPiece = docXml.CreateElement("numeroPiece");
+            numeroPiece.InnerText = SqlBD.SingleValueRequest(connexion,"SELECT numeroPiece FROM piece where stock<=2;");
+            racine.AppendChild(numeroPiece);
+            XmlElement stock = docXml.CreateElement("stock");
+            racine.AppendChild(stock);
+            
+            docXml.Save("stockPiece.xml");
+            MessageBox.Show("le fichier stockPiece.xml a été créé !");
+
         }
     }
 }
