@@ -1,0 +1,31 @@
+﻿<Window x:Class="veloMax.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:veloMax"
+        mc:Ignorable="d"
+        Title="Info" Height="450" Width="800"
+        Style="{DynamicResource GrayWindow}">
+
+    <Canvas Margin="0,0,-6,-29.2">
+        <Label Content="ASSEMBLAGE" Style="{DynamicResource Titre}" Canvas.Left="10" Height="53" Width="248" Canvas.Top="9" />
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="735" Canvas.Top="10"/>
+
+        <ScrollViewer Canvas.Top="67" Canvas.Left="207" Width="383" Height="312">
+            <ListView x:Name="lvAssemblage" Width="424" Height="329" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBindingAssembl}" Background="White">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Numéro Pièce" Width="120" DisplayMemberBinding="{Binding Path=numeroPiece}"></GridViewColumn>
+                        <GridViewColumn Header="Description" Width="100" DisplayMemberBinding="{Binding Path=description}"></GridViewColumn>
+                        <GridViewColumn Header="Stock" Width="90" DisplayMemberBinding="{Binding Path=stock}"></GridViewColumn>
+                        <GridViewColumn Header="Prix" Width="60" DisplayMemberBinding="{Binding Path=prix_P}"></GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+
+
+    </Canvas>
+</Window>

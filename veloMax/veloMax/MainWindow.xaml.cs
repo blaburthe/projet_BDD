@@ -16,6 +16,10 @@ using System.Windows.Shapes;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Xml;
+using System.Xml.XPath;
+using System.IO;
+using System.Xml.Serialization;
 using System.Globalization;
 
 namespace veloMax
@@ -67,6 +71,22 @@ namespace veloMax
             RafraichirStock();
         }
 
+        public void Information(object sender, RoutedEventArgs e)
+        {
+            if (lvStockVelo.SelectedItem != null)
+            {
+                DataRowView dataTable = (DataRowView)lvStockVelo.SelectedItem;
+                Info window = new Info(connexion, dataTable["numeroModele"].ToString());
+                window.Show();
+            }
+
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un modèle dont vous voulez connaître l'assemblage");
+            }
+            
+        }
+
         private void OuvrirFournisseurs(object sender, RoutedEventArgs e)
         {
             Fournisseurs window = new Fournisseurs(connexion);
@@ -77,6 +97,30 @@ namespace veloMax
             Statistiques window = new Statistiques(connexion);
             window.Show();
         }
+        public void ChargementDonneesXML(object sender, RoutedEventArgs e)
+        {
+            XmlDocument docXml = new XmlDocument();
+
+            XmlElement racine = docXml.CreateElement("veloMax");
+            docXml.AppendChild(racine);
+
+
+            XmlDeclaration xmldecl = docXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
+            docXml.InsertBefore(xmldecl, racine);
+
+            XmlElement numeroPiece = docXml.CreateElement("numeroPiece");
+            racine.AppendChild(numeroPiece);
+
+            XmlElement stock = docXml.CreateElement("stock");
+            racine.AppendChild(stock);
+
+            StreamWriter xmlDoc = new StreamWriter("stockPiece.xml", false);
+            ds.WriteXml(xmlDoc);
+            xmlDoc.Close();
+            
+            MessageBox.Show("le fichier stockPiece.xml a été créé !");
+            
+        } 
     }
 
     [ValueConversion(typeof(object), typeof(int))]
