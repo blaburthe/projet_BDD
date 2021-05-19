@@ -29,19 +29,19 @@ namespace veloMax
     public partial class Statistiques : Window
     {
         MySqlConnection connexion;
-        NouvelleCommande windowCommande;
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+        
 
         public Statistiques(MySqlConnection connexion)
         {
             this.connexion = connexion;
             InitializeComponent();
-            SqlBD.LoadData(connexion, "SELECT numeroPiece, sum(qte) FROM compose_piece GROUP BY numeroPiece ORDER BY sum(qte) DESC;", "LoadDataBinding", lvQteVenduPiece);
-            SqlBD.LoadData(connexion, "SELECT numeroModele, sum(qte) FROM compose_modele GROUP BY numeroModele ORDER BY sum(qte) DESC;", "LoadDataBinding", lvQteModele);
+            SqlBD.LoadData(connexion, "SELECT numeroPiece, SUM(qte) as somme  FROM compose_piece GROUP BY numeroPiece ORDER BY somme DESC;", "LoadDataBinding", lvQteVenduPiece);
+            SqlBD.LoadData(connexion, "SELECT numeroModele, SUM(qte) as somme FROM compose_modele GROUP BY numeroModele ORDER BY somme DESC;", "LoadDataBinding", lvQteModele);
 
             string fidelio1 = $@"SELECT i.nom_C, i.prenom_C, date_add(p.datePaiement, interval 1 year) y
                              FROM individu i, fidelio f, programme p 
