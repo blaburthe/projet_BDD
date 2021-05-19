@@ -16,8 +16,8 @@
         <TextBox x:Name="siret" HorizontalAlignment="Left" Height="23" Margin="105,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="numeroRue" HorizontalAlignment="Left" Height="23" Margin="355,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="rue" HorizontalAlignment="Left" Height="23" Margin="355,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ville" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ville" HorizontalAlignment="Left" Height="23" Margin="355,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="codePostal" HorizontalAlignment="Left" Height="23" Margin="355,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
         <Label Content="Nom" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203" Width="60"/>
         <Label Content="Contact" HorizontalAlignment="Left" Margin="24,97,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="0.526,0.203"/>

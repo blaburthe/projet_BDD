@@ -20,7 +20,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.IO;
 using System.Xml.Serialization;
-using System.Data.SqlClient;
+using System.Globalization;
 
 namespace veloMax
 {
@@ -55,6 +55,7 @@ namespace veloMax
         {
             Clients window = new Clients(connexion);
             window.Show();
+            
         }
         public void RafraichirStock()
         {
@@ -113,25 +114,46 @@ namespace veloMax
             XmlElement stock = docXml.CreateElement("stock");
             racine.AppendChild(stock);
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            
-
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT stock FROM piece WHERE stock<=2;";
-            command.CommandType = CommandType.Text;
-            command.Connection = con;
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Member");
-                
-            
             StreamWriter xmlDoc = new StreamWriter("stockPiece.xml", false);
             ds.WriteXml(xmlDoc);
             xmlDoc.Close();
             
-           
             MessageBox.Show("le fichier stockPiece.xml a été créé !");
             
         } 
+    }
+
+    [ValueConversion(typeof(object), typeof(int))]
+    public class IsLessThan2IncludedConverter : IValueConverter
+
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (int)value <= 2;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    [ValueConversion(typeof(object), typeof(int))]
+    public class IsBetween2and4IncludedConverter : IValueConverter
+
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((int)value <= 4 && (int)value >2);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

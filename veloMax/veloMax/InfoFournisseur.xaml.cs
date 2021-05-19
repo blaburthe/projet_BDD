@@ -30,6 +30,7 @@ namespace veloMax
         {
             InitializeComponent();
 
+            this.numeroSiret = siret;
             this.connexion = connexion;
 
             this.nom.Text = nom;
@@ -53,9 +54,48 @@ namespace veloMax
                 ville.Text != "" && codePostal.Text != "" && noteCombobox.SelectedItem != null)
             {
                 //trouver le fournisseur grace à this.numeroSiret
-                //send alter
+                
+                //Modification adresse
+                string idAdresse = SqlBD.SingleValueRequest(connexion, $"SELECT idAdresse FROM adresse NATURAL JOIN fournisseur WHERE siret ='{this.numeroSiret}'");
+                string modifAdresse = $"UPDATE adresse " +
+                    $"SET rue='{rue.Text}', " +
+                    $"numeroRue = '{numeroRue.Text}', " +
+                    $"ville = '{ville.Text}', " +
+                    $"codeP = '{codePostal.Text}' " +
+                    $"WHERE idAdresse='{idAdresse}'";
+                SqlBD.NoAnswerRequest(connexion, modifAdresse);
+
+                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 0");
+                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 0");
+
+                //Modification fournisseur
+                string modifFournisseur = $"UPDATE fournisseur " +
+                    $"SET siret ='{siret.Text}', " +
+                    $"nom_F = '{nom.Text}', " +
+                    $"contact_F = '{contact.Text}', " +
+                    $"libelle = '{noteCombobox.SelectedIndex +1}' " +
+                    $"WHERE siret='{this.numeroSiret}'";//ancien siret
+                SqlBD.NoAnswerRequest(connexion, modifFournisseur);
+
+                //Modification catalogue pièces
+
+                string modifCataloguePiece = $"UPDATE fournit " +
+                    $"SET siret='{siret.Text}' " +
+                    $"WHERE siret='{this.numeroSiret}'"; //ancien siret
+                SqlBD.NoAnswerRequest(connexion, modifCataloguePiece);
+
+                //Modification catalogue vélos
+
+                string modifCatalgoueVelos = $"UPDATE procure " +
+                    $"SET siret='{siret.Text}' " +
+                    $"WHERE siret='{this.numeroSiret}'"; //ancien siret
+                SqlBD.NoAnswerRequest(connexion, modifCatalgoueVelos);
+
                 MessageBox.Show($"Le fournisseur {nom.Text} a bien été modifié !");
                 this.Close();
+
+                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 1");
+                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 1");
             }
             else
             {
