@@ -46,8 +46,7 @@ namespace veloMax
                     $" WHERE numeroPiece='{numeroPiece}';";
                 SqlBD.NoAnswerRequest(connexion, modifPrix);
 
-                SqlBD.NoAnswerRequest(connexion, "SET SQL_SAFE_UPDATES = 0");
-                SqlBD.NoAnswerRequest(connexion, "SET FOREIGN_KEY_CHECKS = 0");
+               
 
                 MessageBox.Show("Le prix a bien été modifié !");
             }
