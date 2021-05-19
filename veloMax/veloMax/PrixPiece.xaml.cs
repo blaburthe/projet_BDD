@@ -33,8 +33,8 @@ namespace veloMax
         {
             InitializeComponent();
             this.connexion = connexion;
-
             this.numeroPiece = num;
+            prix.Text = SqlBD.SingleValueRequest(connexion, $"SELECT prix_P FROM piece where numeroPiece ={numeroPiece}");
         }
 
         private void SauvegarderModif(object sender, RoutedEventArgs e)
@@ -45,9 +45,6 @@ namespace veloMax
                     $" SET prix_P='{prix.Text}'" +
                     $" WHERE numeroPiece='{numeroPiece}';";
                 SqlBD.NoAnswerRequest(connexion, modifPrix);
-
-               
-
                 MessageBox.Show("Le prix a bien été modifié !");
             }
 

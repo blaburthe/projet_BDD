@@ -14,7 +14,7 @@
         <Button Content="Commandes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="41" FontSize="17" Click="OpenCommandes" Canvas.Left="465" Canvas.Top="88"/>
         <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="724" Canvas.Top="10"/>
         <Button Content="Clients" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirClients" Canvas.Left="628" Canvas.Top="88" Height="41"/>
-        <Button Content="Modifier Prix" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Click="Modification" Canvas.Left="175" Canvas.Top="357" Height="22" FontWeight="Bold" Background="#FFFFA000"/>
+        <Button Content="Modifier Prix" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Click="Modification" Canvas.Left="63" Canvas.Top="356" Height="22"/>
         <Button Content="Fournisseurs" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirFournisseurs" Canvas.Left="465" Canvas.Top="154" Height="41"/>
         <Button Content="Exports XML/JSON" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Click="ExportXMLJSON" Canvas.Left="673" Canvas.Top="390" Height="24"/>
         <Button Content="Statistiques" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirStatistiques" Canvas.Left="628" Canvas.Top="154" Height="41"/>
