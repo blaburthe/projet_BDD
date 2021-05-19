@@ -34,8 +34,9 @@ namespace veloMax
         {
             InitializeComponent();
             this.connexion = connexion;
-
             this.numeroModele = num;
+            prix.Text = SqlBD.SingleValueRequest(connexion, $"SELECT prix_M FROM modele where numeroModele ={numeroModele}");
+
         }
 
         private void SauvegarderModif(object sender, RoutedEventArgs e)
