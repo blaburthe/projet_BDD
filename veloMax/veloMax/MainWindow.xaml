@@ -15,12 +15,12 @@
         <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Canvas.Left="724" Canvas.Top="10"/>
         <Button Content="Clients" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirClients" Canvas.Left="628" Canvas.Top="88" Height="41"/>
         <Button Content="Fournisseurs" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirFournisseurs" Canvas.Left="465" Canvas.Top="154" Height="41"/>
-        <Button Content="Export Stocks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Click="ChargementDonneesXML" Canvas.Left="668" Canvas.Top="367" Height="31" FontSize="14"/>
+        <Button Content="Exports XML/JSON" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Click="ExportXMLJSON" Canvas.Left="673" Canvas.Top="390" Height="24"/>
         <Button Content="Statistiques" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" FontSize="17" Click="OuvrirStatistiques" Canvas.Left="628" Canvas.Top="154" Height="41"/>
         <TabControl TabStripPlacement="Top" Width="423" Height="292" Canvas.Left="10" Canvas.Top="59">
             <TabItem Header="pièces" Width="80">
-                <ScrollViewer Margin="0,-1,-5,-5">
-                    <ListView Name="lvStockPiece" Width="426" Height="268" ItemsSource="{Binding Path=LoadDataBindingPiece}">
+                <ScrollViewer Margin="0,-1,-5,-5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListView Name="lvStockPiece" Width="425" Height="268" ItemsSource="{Binding Path=LoadDataBindingPiece}">
                         <ListView.Resources>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Resources>
@@ -71,7 +71,7 @@
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="vélos"  Width="80">
-                <ScrollViewer Margin="0,-1,-5,0">
+                <ScrollViewer Margin="0,-1,-5,0"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <ListView Name="lvStockVelo" Width="423" Height="262" BorderThickness="0" ItemsSource="{Binding Path=LoadDataBindingModele}">
                         <ListView.Resources>
                             <Style TargetType="{x:Type ListViewItem}">
@@ -127,7 +127,7 @@
 
         </TabControl>
         <Button Content="rafraîchir" Canvas.Left="354" Canvas.Top="356" Width="79" Click="Load" Height="20"/>
-        <Button Content="info" HorizontalAlignment="Left" VerticalAlignment="Top" Width="67" Click="Information" Canvas.Left="10" Canvas.Top="356" Height="23" FontSize="14" Background="#FFFF4400"/>
+        <Button Content="info" HorizontalAlignment="Left" VerticalAlignment="Top" Width="48" Click="Information" Canvas.Left="10" Canvas.Top="356"/>
 
     </Canvas>
 </Window>

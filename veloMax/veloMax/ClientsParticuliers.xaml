@@ -17,7 +17,7 @@
     </Window.Resources>
     <Canvas>
 
-        <ScrollViewer Canvas.Top="67" Canvas.Left="10" Width="776">
+        <ScrollViewer Canvas.Top="67" Canvas.Left="10" Width="776"  VerticalScrollBarVisibility="Auto">
             <ListView x:Name="lvClients" Width="778" Height="255" SelectionMode="Single" ItemsSource="{Binding Path=LoadDataBinding}">
                 <ListView.View>
                     <GridView x:Name="gridClient">

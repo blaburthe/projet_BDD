@@ -15,7 +15,7 @@
                 <ListView.View>
                     <GridView x:Name="gridStatistiques1">
                         <GridViewColumn Header="Numéro pièce" Width="100" DisplayMemberBinding="{Binding numeroPiece}"/>
-                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding sum(qte)}"/>
+                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding somme}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -26,7 +26,7 @@
                 <ListView.View>
                     <GridView x:Name="gridStatistiques2">
                         <GridViewColumn Header="Numéro modèle" Width="100" DisplayMemberBinding="{Binding numeroModele}"/>
-                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding sum(qte)}"/>
+                        <GridViewColumn Header="Quantité vendue" Width="100" DisplayMemberBinding="{Binding somme}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
