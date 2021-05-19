@@ -21,7 +21,7 @@ namespace veloMax
         public SqlBD() { }
         
 
-        public List<List<string>> Requete(string requete)
+        public List<List<string>> Requete(MySqlConnection connexion, string requete)
         {
             MySqlCommand commande = connexion.CreateCommand();
             commande.CommandText = requete;

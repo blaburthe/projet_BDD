@@ -17,10 +17,10 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Xml;
-using System.Xml.XPath;
 using System.IO;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Globalization;
+
 
 namespace veloMax
 {
@@ -132,29 +132,127 @@ namespace veloMax
             Statistiques window = new Statistiques(connexion);
             window.Show();
         }
-        public void ChargementDonneesXML(object sender, RoutedEventArgs e)
+        public void ExportXMLJSON(object sender, RoutedEventArgs e)
         {
-            XmlDocument docXml = new XmlDocument();
+            connexion.Open();
+            string request = $"SELECT numeroPiece, description, stock FROM piece WHERE stock<=3";
+            MySqlCommand cmd = new MySqlCommand(request, connexion);
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 
-            XmlElement racine = docXml.CreateElement("veloMax");
-            docXml.AppendChild(racine);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            connexion.Close();
 
+            XmlDocument stockXml = new XmlDocument();
+            XmlDeclaration xmldecl = stockXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
+            XmlElement racine = stockXml.CreateElement("pieces_a_commander");
+            stockXml.AppendChild(racine);
+            stockXml.InsertBefore(xmldecl, racine);
 
-            XmlDeclaration xmldecl = docXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
-            docXml.InsertBefore(xmldecl, racine);
+            foreach (DataTable table in ds.Tables) //il n'y aura qu'une seule table
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    XmlElement piece = stockXml.CreateElement("piece");
 
-            XmlElement numeroPiece = docXml.CreateElement("numeroPiece");
-            racine.AppendChild(numeroPiece);
+                    XmlElement numeroPiece = stockXml.CreateElement("numeroPiece");
+                    numeroPiece.InnerText = Convert.ToString(row.ItemArray[0]);
+                    piece.AppendChild(numeroPiece);
 
-            XmlElement stock = docXml.CreateElement("stock");
-            racine.AppendChild(stock);
+                    XmlElement description = stockXml.CreateElement("description");
+                    description.InnerText = (string)row.ItemArray[1];
+                    piece.AppendChild(description);
 
-            StreamWriter xmlDoc = new StreamWriter("stockPiece.xml", false);
-            xmlDoc.Close();
-            
+                    XmlElement stock = stockXml.CreateElement("stock");
+                    stock.InnerText = Convert.ToString(row.ItemArray[2]);
+                    piece.AppendChild(stock);
+                    
+                    //fournisseurs
+
+                    connexion.Open();
+                    string requestFournisseurs = $"SELECT nom_F, prix_unit_P, numeroCatalogue FROM fournisseur NATURAL JOIN fournit WHERE numeroPiece={row.ItemArray[0]} ORDER BY prix_unit_P";
+                    MySqlCommand cmdFournisseurs = new MySqlCommand(requestFournisseurs, connexion);
+                    MySqlDataAdapter adpFournisseurs = new MySqlDataAdapter(cmdFournisseurs);
+                    DataSet dsFournisseurs = new DataSet();
+                    adpFournisseurs.Fill(dsFournisseurs);
+                    connexion.Close();
+                    
+
+                    foreach (DataRow rowFournisseur in dsFournisseurs.Tables[0].Rows)
+                    {
+                        XmlElement fournisseur = stockXml.CreateElement("fournisseur");
+
+                        XmlElement nom = stockXml.CreateElement("nom");
+                        nom.InnerText = (string)rowFournisseur.ItemArray[0];
+                        fournisseur.AppendChild(nom);
+
+                        XmlElement prixUnitaire = stockXml.CreateElement("prixUnitaire");
+                        prixUnitaire.InnerText = Convert.ToString(rowFournisseur.ItemArray[1]);
+                        fournisseur.AppendChild(prixUnitaire);
+
+                        XmlElement numeroCatalogue = stockXml.CreateElement("numeroCatalogue");
+                        numeroCatalogue.InnerText = Convert.ToString(rowFournisseur.ItemArray[2]);
+                        fournisseur.AppendChild(numeroCatalogue);
+
+                        piece.AppendChild(fournisseur);
+                    }
+                    racine.AppendChild(piece);
+                }
+
+       
+            }
+            stockXml.Save("stocks_faibles.xml");
             MessageBox.Show("le fichier stockPiece.xml a été créé !");
             
-        } 
+
+            //JSON
+
+
+
+            string monFichier = "clientsARelancer.json";
+
+            connexion.Open();
+            string requestClients = "SELECT nom_C, telephone_C, DATEDIFF(DATE_ADD(datePaiement, interval duree year), NOW())" +
+           " FROM individu NATURAL JOIN programme NATURAL join fidelio " +
+           "WHERE DATEDIFF(DATE_ADD(datePaiement, interval duree year),NOW())<60";
+            MySqlCommand cmdClients = new MySqlCommand(requestClients, connexion);
+            MySqlDataAdapter adpClients = new MySqlDataAdapter(cmdClients);
+            DataSet dsClients = new DataSet();
+            adpClients.Fill(dsClients);
+            connexion.Close();
+
+            //instanciation des "writer"
+            StreamWriter writer = new StreamWriter(monFichier);
+            JsonTextWriter jwriter = new JsonTextWriter(writer);
+
+            //debut du fichier Json
+            jwriter.WriteStartObject();
+
+            //debut du tableau Json
+            jwriter.WritePropertyName("clientsARelancer");
+            jwriter.WriteStartArray();
+
+            foreach (DataRow row in dsClients.Tables[0].Rows)
+            {
+                jwriter.WriteStartObject();
+                jwriter.WritePropertyName("Nom");
+                jwriter.WriteValue((string)row.ItemArray[0]);
+                jwriter.WritePropertyName("Telephone");
+                jwriter.WriteValue((string)row.ItemArray[1]);
+                jwriter.WritePropertyName("JoursRestants");
+                jwriter.WriteValue(Convert.ToInt32(row.ItemArray[2]));
+                jwriter.WriteEndObject();
+            }
+
+            jwriter.WriteEndArray();
+            jwriter.WriteEndObject();
+
+            //fermeture de "writer"
+            jwriter.Close();
+            writer.Close();
+
+            MessageBox.Show("le fichier clients_à_relancer.json a été créé !");
+        }
     }
 
     [ValueConversion(typeof(object), typeof(int))]
