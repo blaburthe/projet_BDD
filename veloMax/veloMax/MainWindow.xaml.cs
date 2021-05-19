@@ -20,6 +20,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.IO;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
 
 namespace veloMax
 {
@@ -69,6 +70,22 @@ namespace veloMax
             RafraichirStock();
         }
 
+        public void Information(object sender, RoutedEventArgs e)
+        {
+            if (lvStockVelo.SelectedItem != null)
+            {
+                DataRowView dataTable = (DataRowView)lvStockVelo.SelectedItem;
+                Info window = new Info(connexion, dataTable["numeroModele"].ToString());
+                window.Show();
+            }
+
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un modèle dont vous voulez connaître l'assemblage");
+            }
+            
+        }
+
         private void OuvrirFournisseurs(object sender, RoutedEventArgs e)
         {
             Fournisseurs window = new Fournisseurs(connexion);
@@ -79,26 +96,42 @@ namespace veloMax
             Statistiques window = new Statistiques(connexion);
             window.Show();
         }
-        public void ChargementDonnees(object sender, RoutedEventArgs e)
+        public void ChargementDonneesXML(object sender, RoutedEventArgs e)
         {
             XmlDocument docXml = new XmlDocument();
-            
+
             XmlElement racine = docXml.CreateElement("veloMax");
             docXml.AppendChild(racine);
 
 
             XmlDeclaration xmldecl = docXml.CreateXmlDeclaration("1.0", "UTF-8", "no");
             docXml.InsertBefore(xmldecl, racine);
-            
+
             XmlElement numeroPiece = docXml.CreateElement("numeroPiece");
-            numeroPiece.InnerText = SqlBD.SingleValueRequest(connexion,"SELECT numeroPiece FROM piece where stock<=2;");
             racine.AppendChild(numeroPiece);
+
             XmlElement stock = docXml.CreateElement("stock");
             racine.AppendChild(stock);
-            
-            docXml.Save("stockPiece.xml");
-            MessageBox.Show("le fichier stockPiece.xml a été créé !");
 
-        }
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT stock FROM piece WHERE stock<=2;";
+            command.CommandType = CommandType.Text;
+            command.Connection = con;
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Member");
+                
+            
+            StreamWriter xmlDoc = new StreamWriter("stockPiece.xml", false);
+            ds.WriteXml(xmlDoc);
+            xmlDoc.Close();
+            
+           
+            MessageBox.Show("le fichier stockPiece.xml a été créé !");
+            
+        } 
     }
 }
