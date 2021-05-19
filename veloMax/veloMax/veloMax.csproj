@@ -80,6 +80,12 @@
     <Compile Include="NouvelleCommande.xaml.cs">
       <DependentUpon>NouvelleCommande.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrixPiece.xaml.cs">
+      <DependentUpon>PrixPiece.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrixVelo.xaml.cs">
+      <DependentUpon>PrixVelo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlBD.cs" />
     <Compile Include="Statistiques.xaml.cs">
       <DependentUpon>Statistiques.xaml</DependentUpon>
@@ -132,6 +138,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NouvelleCommande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrixPiece.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrixVelo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

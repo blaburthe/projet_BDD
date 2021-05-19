@@ -1,0 +1,20 @@
+﻿<Window x:Class="veloMax.PrixVelo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:veloMax"
+        mc:Ignorable="d"
+        Title="PrixVelo" Height="267.57" Width="490.903"
+        Style="{DynamicResource GrayWindow}">
+    <Grid Margin="0,-11,3.8,4.6">
+        <Label Content="PRIX VELO" Style="{DynamicResource Titre}" HorizontalAlignment="Left" Margin="24,29,0,0" VerticalAlignment="Top" FontSize="20" />
+        <Button Content="Fermer" Style="{DynamicResource RedButtonStyle}" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Click="CloseWindow" Height="22" Margin="412,37,0,0"/>
+
+
+        <TextBox x:Name="prix" HorizontalAlignment="Left" Height="24" Margin="190,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+
+        <Label Content="NOUVEAU PRIX" HorizontalAlignment="Left" Margin="198,101,0,0" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="-0.43,1.674"/>
+        <Button Content="Sauvegarder les modifications" Style="{DynamicResource OrangeButtonStyle}" HorizontalAlignment="Left" Margin="277,199,0,0" VerticalAlignment="Top" Width="189" FontWeight="Bold" Click="SauvegarderModif" Height="24"/>
+    </Grid>
+</Window>
