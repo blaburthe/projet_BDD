@@ -115,7 +115,6 @@ namespace veloMax
             racine.AppendChild(stock);
 
             StreamWriter xmlDoc = new StreamWriter("stockPiece.xml", false);
-            ds.WriteXml(xmlDoc);
             xmlDoc.Close();
             
             MessageBox.Show("le fichier stockPiece.xml a été créé !");
