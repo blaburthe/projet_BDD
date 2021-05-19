@@ -87,6 +87,41 @@ namespace veloMax
             
         }
 
+        public void Modification(object sender, RoutedEventArgs e)
+        {
+
+            if (Table.SelectedIndex == 0)
+            {
+                if (lvStockPiece.SelectedItem != null)
+                {
+                    DataRowView dataTable = (DataRowView)lvStockPiece.SelectedItem;
+                    PrixPiece window = new PrixPiece(connexion, dataTable["numeroPiece"].ToString());
+                    window.Show();
+                }
+
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner une pièce dont vous voulez modifier le prix");
+
+                }
+            }
+            if (Table.SelectedIndex == 1)
+            {
+                if (lvStockVelo.SelectedItem != null)
+                {
+                    DataRowView dataTable = (DataRowView)lvStockVelo.SelectedItem;
+                    PrixVelo window = new PrixVelo(connexion, dataTable["numeroModele"].ToString());
+                    window.Show();
+                }
+
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner un modèle dont vous voulez modifier le prix");
+                }
+            }
+
+        }
+
         private void OuvrirFournisseurs(object sender, RoutedEventArgs e)
         {
             Fournisseurs window = new Fournisseurs(connexion);
