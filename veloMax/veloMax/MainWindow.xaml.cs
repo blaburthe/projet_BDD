@@ -257,9 +257,7 @@ namespace veloMax
 
     [ValueConversion(typeof(object), typeof(int))]
     public class IsLessThan2IncludedConverter : IValueConverter
-
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return (int)value <= 2;
